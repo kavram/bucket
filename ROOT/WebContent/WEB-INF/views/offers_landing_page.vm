@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns:fb="http://ogp.me/ns/fb#">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate"/>
+        <meta http-equiv="Cache-Control" content="post-check=1, pre-check=2"/>
+        <meta http-equiv="Expires" content="-1"/>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <title>Home</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/fixedWidth.css"/>
+        <link type="text/css" href="/static/css/blitzer/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYtUtcjcJ11in0CKkIphqJ6W4pvdyRHXY&sensor=true"></script>
+        <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-ui-1.8.20.custom.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.metautils.js"></script>
+
+        <script type="text/javascript" src="/static/js/date/date.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.utils.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.payload.utils.js"></script>
+        <script type="text/javascript" src="/static/js/json2.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.offer.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.header.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.wid.offer1.js"></script>
+
+        <script type="text/javascript" src="/static/js/widgets/jquery.tooltip.js"></script>
+        <script type="text/javascript">
+			var user = $user;
+			$(document).ready(function() {
+				$.header.init(['myaccount','myorders','bizreg','myoffers','newoffer','signout']);
+				$.offer.completeRendering();
+			});
+        </script>
+     
+    </head>
+    <body>
+	#parse("socialScriptsInit.vm")
+        <div class="wrapper">
+            <div class="header">
+                 <div class="header_icon">&nbsp;</div>
+                <div class="account"></div>
+            </div>
+            <div class="content">
+                 <div class="head-text">
+                Make your order and share the offer with your friends to increase your savings.
+                <br/>Each new order will increase offer discount and will save you more money!
+            </div>
+                <div id="offersCtn">
+                	#parse("offers_macro.vm")
+                </div>
+            </div>
+            #parse("footer.vm")
+        </div>
+    </body>
+</html>

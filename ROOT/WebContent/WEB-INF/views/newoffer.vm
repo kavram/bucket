@@ -1,0 +1,538 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+        <meta http-equiv="Cache-Control" content="post-check=1, pre-check=2" />
+        <meta http-equiv="Expires" content="-1" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <title>New Offer</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/blitzer/jquery-ui-1.8.20.custom.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/fixedWidth.css" />
+
+        <!--link type="text/css"
+        href="/static/css/custom-theme/jquery-ui-1.8.18.custom.css" rel="stylesheet" /-->
+
+        <!--script type="text/javascript"
+        src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCYtUtcjcJ11in0CKkIphqJ6W4pvdyRHXY&sensor=true"></script-->
+        <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-ui-1.8.20.custom.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.metautils.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.utils.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.payload.utils.js"></script>
+        <script type="text/javascript" src="/static/js/json2.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.offer.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.order.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.bizoffer.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.newoffer.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.wid.offer1.js"></script>
+       <script type="text/javascript" src="/static/js/date/date.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.header.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-ui-timepicker-addon.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.ui.touch.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.ui.ipad.altfix.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.ui.touch.add.js"></script>
+        <script type="text/javascript" src="/static/js/regExpr.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.tooltip.js"></script>
+
+        <script type="text/javascript">
+			var user = $user;
+			var biz = $biz.getJSONObj().toString();
+			var offer = $offer;
+
+			$(document).ready(function() {
+				$.header.init(['myaccount','myorders','myoffers','signout']);
+				$.newoffer.init();
+			});
+
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <div class="header_icon">&nbsp;</div>
+                <div class="account"></div>
+            </div>
+            <div class="content">
+
+                <fieldset>
+                    <legend id="offerLgnd">
+                        New Offer
+                    </legend>
+                    <div class="offerGrid">
+                        <div class="row">
+                            <div class="cell">
+                                <div class="offerGrid">
+                                    <div class="row">
+                                        <div class="cellForm">
+                                            Offer Name
+                                        </div>
+                                        <div class="cell regForm">
+                                            <input type="text" name="offername" id="offername" maxlength="100"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="cellForm">
+                                            Description
+                                        </div>
+                                        <div class="cell regForm">
+                                            <input type="text" name="offerdescr" id="offerdescr" maxlength="250" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="cellForm">
+                                            Offer Close Date
+                                        </div>
+                                        <div class="cell regForm">
+                                            <input type="text" name="offerdate" id="offerdate"  />
+                                            <input type="text" name="offertime" id="offertime"  />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="cellForm">
+                                            Merchant Name
+                                        </div>
+                                        <div class="cell regForm">
+                                            <input type="text" name="merchantname" id="merchantname" maxlength="100" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="cellForm">
+                                            Merchant Phone
+                                        </div>
+                                        <div class="cell regForm">
+                                            <input type="text" name="merchantphone" id="merchantphone" maxlength="15" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cell">
+                                <div class="offerGrid">
+                                    <div class="row">
+                                        <div class="cell">
+                                            <fieldset>
+                                                <legend>
+                                                    Discount
+                                                </legend>
+                                                <div class="offerGrid">
+                                                    <div class="row conRow">
+                                                        <div class="cellNewOffer  radio">
+                                                            <div class="gridContent">
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer1">
+                                                                        <input type="radio" id="radio1" name="radio"/>
+                                                                        <label for="radio1">Progressive</label>
+                                                                        <br/>
+                                                                        <label for="radio1" class="fixed">Discount grows relative to the percentage </label>
+                                                                        <br/>
+                                                                        <label for="radio1" class="fixed">of the offer ordered items</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer1">
+                                                                        <input type="radio" id="radio2" name="radio" />
+                                                                        <label for="radio2">Fixed Milestones </label>
+                                                                        <br/>
+                                                                        <label for="radio2" class="fixed">Discount is tied to the percentage points</label>
+                                                                        <br/>
+                                                                        <label for="radio2" class="fixed">of the offer ordered items</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cell regFormNum">
+                                                            <div class="gridContent hideContent" id="radio1Con">
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer1 first">
+                                                                        Ordered items:
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        0%
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        100%
+                                                                    </div>
+                                                                    <div class="cell">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer1 first">
+                                                                        Discount:
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        <input type="text" name="d0" id="d0" maxlength="5"/>
+                                                                        <span class="procent">% &nbsp; &nbsp;&nbsp; &nbsp;</span>
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        <input type="text" name="d100" id="d100" maxlength="5"/>
+                                                                        <span class="procent">% &nbsp; &nbsp;&nbsp; &nbsp;</span>
+                                                                    </div>
+                                                                    <div class="cell">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="gridContent hideContent" id="radio2Con">
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer1 first">
+                                                                        Ordered items:
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        0%
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        25%
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        50%
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        75%
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        100%
+                                                                    </div>
+                                                                    <div class="cell">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer1 first">
+                                                                        Discount:
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        <input type="text" name="m0" id="m0" maxlength="5"/>
+                                                                        <span class="procent">% &nbsp; &nbsp;</span>
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        <input type="text" name="m25" id="m25" maxlength="5"/>
+                                                                        <span class="procent">% &nbsp; &nbsp;</span>
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        <input type="text" name="m50" id="m50" maxlength="5"/>
+                                                                        <span class="procent">% &nbsp; &nbsp;</span>
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        <input type="text" name="m75" id="m75" maxlength="5"/>
+                                                                        <span class="procent">% &nbsp; &nbsp;</span>
+                                                                    </div>
+                                                                    <div class="cellNewOffer1 second">
+                                                                        <input type="text" name="m100" id="m100" maxlength="5"/>
+                                                                        <span class="procent">% &nbsp; &nbsp;</span>
+                                                                    </div>
+                                                                    <div class="cell">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <br/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="cell">
+                                            <fieldset>
+                                                <legend>
+                                                    Pickup
+                                                </legend>
+                                                <div class="offerGrid" id="location">
+                                                    <div class="row conRow">
+                                                        <!--div class="cellNewOffer radio">
+                                                        <div class="gridContent">
+                                                        <div class="row">
+                                                        <div class="cellNewOffer">
+                                                        <input type="radio" id="radio3" name="radioDel"/>
+                                                        <label for="radio3">Customer pickups his order</label>
+                                                        </div>
+                                                        </div>
+                                                        <div class="row">
+                                                        <div class="cellNewOffer">
+                                                        <input type="radio" id="radio4" name="radioDel"/>
+                                                        <label for="radio4">Orders delivered by Merchant</label>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        </div-->
+                                                        <div class="cell ">
+                                                            <!--div class="gridContent hideContent"  id="radio3Con"-->
+                                                            <div class="gridContent"  id="radio3Con">
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer radio regForm">
+                                                                        Pickup Dates
+                                                                    </div>
+                                                                    <div class="cell pickupdates">
+                                                                        <div class="offerGrid time">
+                                                                            <div class="row conRow">
+                                                                                <div class="cellNewOffer2">
+                                                                                    <div class="gridContent" style="position:relative;top:-5px;">
+                                                                                        <div class="row">
+                                                                                            <div class="cellNewOffer2 b">
+                                                                                                <input type="radio" id="radio5" name="radioTime"/>
+                                                                                                <label for="radio5">Fixed Dates</label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="cellNewOffer2 b">
+                                                                                                <input type="radio" id="radio6" name="radioTime"/>
+                                                                                                <label for="radio6">Weekdays</label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="cell regForm">
+                                                                                    <div class="gridContent hideContent timeContent"  id="radio5Con">
+                                                                                        <div class="row">
+                                                                                            <div class="cell b">
+                                                                                                Time&nbsp;<label>from</label>
+                                                                                                <input type="text" name="fromtime" id="fromtime" />
+                                                                                                &nbsp; <label>to</label>
+                                                                                                <input type="text" name="totime" id="totime" />
+                                                                                            </div>
+                                                                                            <div class="cell b">
+                                                                                                &nbsp;
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="cell b">
+                                                                                                Date&nbsp;<label>from</label>
+                                                                                                <input type="text" name="fromdate" id="fromdate" />
+                                                                                                &nbsp; <label>to</label>
+                                                                                                <input type="text" name="todate" id="todate" />
+                                                                                            </div>
+                                                                                            <div class="cell b">
+                                                                                                &nbsp;
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="gridContent hideContent timeContent"  id="radio6Con">
+                                                                                        <div class="row">
+                                                                                            <div class="cell b">
+                                                                                                <div id="weekdaysSet">
+                                                                                                    <input type="checkbox" id="check1" />
+                                                                                                    <label for="check1">Mon</label>
+                                                                                                    <input type="checkbox" id="check2" />
+                                                                                                    <label for="check2">Tue</label>
+                                                                                                    <input type="checkbox" id="check3" />
+                                                                                                    <label for="check3">Wed</label>
+                                                                                                    <input type="checkbox" id="check4" />
+                                                                                                    <label for="check4">Thu</label>
+                                                                                                    <input type="checkbox" id="check5" />
+                                                                                                    <label for="check5">Fri</label>
+                                                                                                    <input type="checkbox" id="check6" />
+                                                                                                    <label for="check6">Sat</label>
+                                                                                                    <input type="checkbox" id="check7" />
+                                                                                                    <label for="check7">Sun</label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="cell b">
+                                                                                                <label>Time&nbsp;&nbsp;from&nbsp;</label>
+                                                                                                <input type="text" name="fromtimeWeekday" id="fromtimeWeekday" />
+                                                                                                <label>&nbsp;&nbsp;to&nbsp;</label>
+                                                                                                <input type="text" name="totimeWeekday" id="totimeWeekday"/>
+                                                                                                <span title="Add" class="ui-state-default ui-corner-all ui-icon ui-icon-plusthick" id="weekdayPlus"></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row" id="recurring">
+                                                                                            <div class="cell">
+                                                                                                <div class="gridContent">
+                                                                                                    <div class="row">
+                                                                                                        <div class="cell" style="width:45px;"></div>
+                                                                                                        <div class="cell" style="width:130px;"></div>
+                                                                                                        <div class="cell"></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                          
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer3">
+                                                                        Location
+                                                                    </div>
+                                                                    <div class="cell regForm">
+                                                                        <input type="text" name="locName" id="locName" maxlength="100"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer3">
+                                                                        Address
+                                                                    </div>
+                                                                    <div class="cell regForm">
+                                                                        <input type="text" name="locAddress" id="locAddress" maxlength="100"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer3">
+                                                                        City
+                                                                    </div>
+                                                                    <div class="cell regForm">
+                                                                        <input type="text" name="locCity" id="locCity" maxlength="45"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer3">
+                                                                        State
+                                                                    </div>
+                                                                    <div class="cell regForm">
+                                                                        <input type="text" name="locState" id="locState" maxlength="2"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer3">
+                                                                        Zipcode
+                                                                    </div>
+                                                                    <div class="cell regForm">
+                                                                        <input type="text" name="locZipcode" id="locZipcode" maxlength="5"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="cellNewOffer3">
+                                                                        Pickup Note
+                                                                    </div>
+                                                                    <div class="cell regForm">
+                                                                        <textarea id="custNote"  name="custNote" maxlength="250"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--div class="gridContent hideContent" id="radio4Con">
+                                                            <div class="row">
+                                                            <div class="cellNewOffer1">
+                                                            Pickup Note
+                                                            </div>
+                                                            <div class="cell">
+                                                            <textarea id="mercNote"  name="mercNote" maxlength="250"></textarea>
+                                                            </div>
+                                                            </div>
+                                                            <div class="row">
+                                                            <div class="cellNewOffer1">
+                                                            &nbsp;
+                                                            </div>
+                                                            <div class="cell">
+                                                            &nbsp;
+                                                            </div>
+                                                            </div>
+                                                            <div class="row">
+                                                            <div class="cellNewOffer1">
+                                                            &nbsp;
+                                                            </div>
+                                                            <div class="cell">
+                                                            &nbsp;
+                                                            </div>
+                                                            </div>
+                                                            <div class="row">
+                                                            <div class="cellNewOffer1">
+                                                            &nbsp;
+                                                            </div>
+                                                            <div class="cell">
+                                                            &nbsp;
+                                                            </div>
+                                                            </div>
+                                                            <div class="row">
+                                                            <div class="cellNewOffer1">
+                                                            &nbsp;
+                                                            </div>
+                                                            <div class="cell">
+                                                            &nbsp;
+                                                            </div>
+                                                            </div>
+                                                            </div-->
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <br/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cell">
+                                <fieldset>
+                                    <legend>
+                                        Items
+                                    </legend>
+                                    <br/>
+                                    <div  id="regItemsTbl">
+                                        <div class="row">
+                                            <div class="itemHeaderCell">
+                                                Name
+                                            </div>
+                                            <div class="itemHeaderCell">
+                                                Description
+                                            </div>
+                                            <div class="itemHeaderCell">
+                                                Price
+                                            </div>
+                                            <div class="itemHeaderCell">
+                                                Unit
+                                            </div>
+                                            <div class="itemHeaderCell item-qty">
+                                                Qty
+                                            </div>
+                                            <div class="itemHeaderCell buttons">
+                                                <span title="Add record" class="ui-state-default ui-corner-all ui-icon ui-icon-plusthick plus"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row iteminfo">
+                                            <div class="offerCell regFormItemName">
+                                                <input type="text" name="item" id="item" maxlength="100" />
+                                            </div>
+                                            <div class="offerCell regFormItemDescr">
+                                                <input type="text" name="itemdescr" id="itemdescr" maxlength="250"/>
+                                            </div>
+                                            <div class="offerCell regFormItemNum">
+                                                $
+                                                <input type="text" name="price" id="price" maxlength="6"/>
+                                            </div>
+                                            <div class="offerCell regForm regFormItemUnit">
+                                                <select  name="unit" id="unit"></select>
+                                            </div>
+                                            <div class="offerCell regFormItemQty">
+                                                <input type="text" name="qty" id="qty" maxlength="5"/>
+                                            </div>
+                                            <div class="offerCell buttons">
+                                                <span class="ui-state-default ui-corner-all ui-icon ui-icon-minusthick minus"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cell regForm">
+                                <br/>
+                                <button id="submitButton" class="submitButton">
+                                    Submit
+                                </button>
+                                <button id="cancelButton" class="cancelButton">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <br/>
+            </div>
+            #parse("footer.vm")
+        </div>
+    </body>
+</html>

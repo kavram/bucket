@@ -1,0 +1,125 @@
+body {
+	text-align: center;	
+	font-family: Verdana, Trebuchet MS, Tahoma, Arial, sans-serif;
+	font-size: 70%;	
+	margin:20px 0px; 
+	padding:0px;
+}
+.emailtext{
+	margin:0px auto;
+    border:1px solid #BBB;
+    background-color: #EBEBEB;
+    background: url(../images/body-bg.jpg) 0% 0% repeat;
+    width:70%;
+    min-width: 620px;
+}
+.text {
+text-align: left;
+font-size: 12px;	
+padding:15px;
+}
+.table{
+	display: table;
+	padding:15px;
+	font-size: 12px;	
+}
+
+.row {
+	display: table-row;
+}
+.cell {
+	display: table-cell;
+	border: 1pt solid transparent;
+	vertical-align: top;
+	text-align: center;
+}
+
+.header{
+	font-weight:bold;
+	font-size: 13px;
+	text-align: left;
+	padding-top: 15px;
+}
+.leftAlign{
+	text-align:left;
+}
+.paragraph {
+	text-align:left;
+	font-weight:bold;
+	color:#8C1717;
+	font-size:14px;	
+}
+.label {
+	text-align:left;
+	font-weight:bold;
+	font-size:12px;
+}
+.labeltext {
+	text-align:left;
+	font-size:12px;
+}
+.itemHeaderCell {
+	display: table-cell;
+	border: 1pt solid #d9d6c4;
+	font-weight: bold;
+	vertical-align: middle;
+	text-align: center;
+	white-space: nowrap;
+	height: 18px;
+	font-size: 12px;
+}
+.offerFooterCell, .offerFooterCellTotal {
+	display: table-cell;
+	border: 1pt solid transparent;
+	font-weight: bold;
+	vertical-align: top;
+	text-align: left;
+	padding-left: 8px;
+	font-size: 11px;
+}
+.offerFooterCellTotal {
+	text-align: right;
+	border-right: 1pt solid #d9d6c4;
+	padding-right: 4px;
+	padding-left: 0px;
+}
+.offerCellAmount {
+display: table-cell;
+border: 1pt solid #D9D6C4;
+vertical-align: center;
+text-align: center;
+height: 18px;
+font-size: 12px;
+padding-left: 3px;
+}
+.noRightBorder{
+	border-right: 1pt solid transparent;
+}
+.offerCell, .offerCellRight {
+display: table-cell;
+border: 1pt solid #D9D6C4;
+vertical-align: center;
+text-align: center;
+height: 19px;
+font-size: 12px;
+padding: 1px;
+margin: 0px;
+}
+#itemsTbl, #regItemsTbl, #custItemsTbl {
+display: table;
+border-collapse: collapse;
+border: 1px solid transparent;
+width: 80%;
+}
+.itemname {
+	width:250px;
+}
+.itemprice {
+	width:150px;
+}
+.itemqty {
+	width:150px;
+}
+.itemtotal {
+	width:100px;
+}

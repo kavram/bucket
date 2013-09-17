@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate"/>
+        <meta http-equiv="Cache-Control" content="post-check=1, pre-check=2"/>
+        <meta http-equiv="Expires" content="-1"/>
+        <title>Update My Business</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/fixedWidth.css"/>
+        <link type="text/css" href="/static/css/blitzer/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
+        <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-ui-1.8.20.custom.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.utils.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/utils.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.payload.utils.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.mybizaccount.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.header.js"></script>
+        <script type="text/javascript">
+        	var user = $user;
+            $(document).ready(function() {
+            	$.header.init(['myaccount','myorders','bizreg','myoffers','newoffer','signout']);
+                $.mybizaccount.init();
+            });
+        </script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <div class="header_icon">&nbsp;</div>
+                <div class="account"></div>
+            </div>
+            <form id="formBizUpdate" method="POST" enctype="multipart/form-data" action="/bizupdated">
+            <input type="hidden" name="id" value="$biz.getINode("id").getValue().toString()">
+            <div class="content" id="regform">
+                <div class="gridContent"  >
+                    <div class="row">
+                        <div class="cell1 regform signinLeftContent" id="formcell">
+                            <ol>
+                                <li>
+                                    <label id="title">Update My Business</label>
+                                </li>
+                                  <li>
+                                    <label id="errorMsg">&nbsp;</label>
+                                </li>
+								<li id="biznameli">
+                                	<label for="name" id="namelabel">Name</label>
+                                	<input required="true" type="text" maxlength="150" id="name" name="name" required="true" validation="required:true"
+                                    	value="$biz.getINode("name").getValue().toString()"
+                                    />
+                               	</li>
+                               	
+                                <li id="descriptionli">
+                                	<label for="description" id="descriptionlabel" >Description</label>
+                                	<input type="text" maxlength="250" id="description" name="description" required="false" validation="required:false"
+                                	#if($biz.getINode("description").getValue())	
+                                		value="$biz.getINode("description").getValue().toString()"
+                                	#end
+                                	/>	
+                                </li>
+								<li id="bizlogoli">
+                                	<label for="bizlogo" id="bizlogolabel">Logo</label>
+                                	#if($biz.getINode("logo").getValue())
+                                    <img id="logoimg" src="http://${imagesUrl}$biz.getINode("logo").getValue().toString()">
+                                    <button id="updateLogoButton">Update Logo</button>
+                                    #else
+                                     <div class="fakeupload">
+                                            <input required="false" type="text"  id="logo" name="bizlogo" validation="required:false"/>
+                                            <button type="button" id="uploadButton" onclick="this.form.reallogo.click()">
+                                                Upload
+                                            </button>
+                                        </div>
+                                        <input type="file" name="reallogo" id="reallogo" class="reallogo" onchange="this.form.bizlogo.value = this.value;" />
+                                    
+                                    #end
+                               	</li>
+                               	
+                               <li id="emailli">
+                                    <label for="email" id="emaillabel">Email</label>
+                               		<input type="text" maxlength="150" id="email" name="email" required="false" validation="required:false"
+                                    #if($biz.getINode("email").getValue())
+                                    	value="$biz.getINode("email").getValue().toString()"
+                                    #end
+                                    />
+                               </li>
+                               <li id="phoneli">
+                                    <label for="phone" id="phonelabel">Phone</label>
+                                    <input type="text" maxlength="15" id="phone" name="phone" required="false" validation="required:false"
+                                    #if($biz.getINode("phone").getValue())
+                                    	value="$biz.getINode("phone").getValue().toString()"
+                                    #end	
+                                    />
+                               </li>
+                               #set( $loc = $biz.getINode("locations").getIObjectValue().toArray()[0])
+                               <input type="hidden" name="locid" value="$loc.getINode("id").getValue().toString()">
+                               <li id="streetli">
+                                    <label for="street" id="streetlabel">Street</label>
+                                    <input type="text" maxlength="55" id="street" name="street" required="false" validation="required:false"
+                                    #if($loc.getINode("street").getValue())
+                                    	value="$loc.getINode("street").getValue().toString()"
+                                    #end	
+                                    />
+                               </li>
+                               <li id="cityli">
+                                    <label for="city" id="citylabel">City</label>
+									<input type="text" maxlength="55" id="city" name="city" required="false" validation="required:false"
+                                    #if($loc.getINode("city").getValue())
+                                    	value="$loc.getINode("city").getValue().toString()"
+                                    #end
+                                    />
+                               </li>
+                               <li id="stateli">
+                                    <label for="state" id="statelabel">State</label>
+                                    <input type="text" maxlength="55" id="state" name="state" required="false" validation="required:false"
+                                    #if($loc.getINode("state").getValue())
+                                    	value="$loc.getINode("state").getValue().toString()"
+                                    #end
+                                    />
+                               </li>
+                               <li id="zipcodeli">
+                                    <label for="zipcode">Zipcode</label>
+                                    <input type="text" maxlength="10" id="zipcode" name="zipcode" required="false" validation="required:false"
+                                    #if($loc.getINode("zipcode").getValue())
+                                    	value="$loc.getINode("zipcode").getValue().toString()"
+                                    #end
+                                    </>
+                               </li>                                
+                               <li id="butcell">
+                                    <button type="submit" id="submitButton">
+                                        Update 
+                                    </button>
+                                    &nbsp;
+                                    <button type="button" id="cancelButton">
+                                        Cancel
+                                    </button>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="cell">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+            #parse("footer.vm")
+        </div>
+    </body>
+</html>

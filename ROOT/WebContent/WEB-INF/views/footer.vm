@@ -1,0 +1,15 @@
+<div class="footer">
+	<p>
+       Please contact <a href="mailto:uusername@upmile.com">username@upmile.com</a>
+       with your questions, comments, and suggestions. <a
+       href="http://www.upmile/termsandconds.html">Terms and
+       Conditions of Use &amp; Disclaimer</a>.
+       <br />
+       Copyright &copy;
+       <script type="text/javascript">
+       var today = new Date();
+       document.write(today.getFullYear());
+       </script>
+       . All rights reserved.
+    </p>
+</div>

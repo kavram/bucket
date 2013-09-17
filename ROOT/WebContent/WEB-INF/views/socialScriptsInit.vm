@@ -1,0 +1,35 @@
+<div id="fb-root"></div>
+<script>
+	window.fbAsyncInit = function() {
+    	FB.init({
+      		appId      : '336489006441650', // App ID
+      		status     : true, // check login status
+      		cookie     : true, // enable cookies to allow the server to access the session
+      		xfbml      : true  // parse XFBML
+    	});
+
+    FB.XFBML.parse();
+  };		
+	(function(d, s, id) {
+  		var js, fjs = d.getElementsByTagName(s)[0];
+  		if (d.getElementById(id)) return;
+  		js = d.createElement(s); js.id = id;
+  		js.src = "//connect.facebook.net/en_US/all.js"; //#xfbml=1&appId=336489006441650";
+  		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+//tw
+	(function(d) {
+		var twId = "twitter-wjs";
+		if(d.getElementById(twId)){
+			var element = d.getElementById(twId);
+			  element.parentNode.removeChild(element);
+		}
+		var js, fjs = d.getElementsByTagName("script")[0];
+		js = d.createElement("script");
+		js.id = twId;
+		js.src="//platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js,fjs);
+	}(document));
+	
+	
+</script>	   	

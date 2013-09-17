@@ -1,0 +1,123 @@
+#set ($subject = "Umpile.com Order Update Notification")
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>New Order</title>
+        <link rel="stylesheet" type="text/css" href="http://$domain/static/css/email.css"/>
+    </head>
+    <body>
+        <div class="emailtext">
+            <div class="text">
+                Hello $offerCreator.getNodeValueAsStr("first_name")!
+                <br/>
+                Customer updated his order placed on your offer <a href="http://$domain/myoffers">$offer.getOffer().getNodeValueAsStr("name").</a>
+                <br/>
+            </div>
+            <br/>
+            <div sclass="table">
+                <div class="row">
+                    <div class="cell header paragraph">
+                        Customer:
+                    </div>
+                    &nbsp;
+                    <div class="cell">
+                        $customer.getNodeValueAsStr("first_name") $customer.getNodeValueAsStr("last_name")
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Order Items
+                </div>
+                <div class="cell">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    <div id="itemsTbl">
+                        <div class="row">
+                            <div class="itemHeaderCell itemname">
+                                Name
+                            </div>
+                            <div class="itemHeaderCell itemprice">
+                                Price
+                            </div>
+                            <div class="itemHeaderCell itemqty">
+                                Order Qty
+                            </div>
+                            <div class="itemHeaderCell itemtotal">
+                                Total
+                            </div>
+                        </div>
+                        #foreach( $id in $offer.getOrderItemIds() )
+                        #if($offer.getOrderItemQty($id) != "0")
+                        <div class="row iteminfo" id="$id">
+                            <div class="offerCell" id="iname">
+                                $offer.getItem($id).getString("name")
+                            </div>
+                            <div class="offerCell" id="iprice">
+                                $$offer.getItem($id).getString("price") / $offer.getItem($id).getString("unit")
+                            </div>
+                            <div class="offerCell qtyColumn">
+                                $offer.getOrderItemQty($id)
+                            </div>
+                            <div class="offerCell" id="itotal">
+                                $$offer.calcItemTotalPrice($offer.getOrderItemQty($id), $offer.getItem($id).getString("price"))
+                            </div>
+                        </div>
+                        #end
+                        #end
+                        <div class="row">
+                            <div class="offerFooterCell">
+                                &nbsp;
+                            </div>
+                            <div class="offerFooterCell">
+                                &nbsp;
+                            </div>
+                            <div class="offerFooterCell">
+                                &nbsp;
+                            </div>
+                            <div class="offerCellAmount">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="offerFooterCell">
+                                &nbsp;
+                            </div>
+                            <div class="offerFooterCell">
+                                &nbsp;
+                            </div>
+                            <div class="offerFooterCellTotal">
+                                Discount (%)
+                            </div>
+                            <div class="offerCellAmount" id="discount">
+                                $offer.getOfferDiscount()
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="offerFooterCell">
+                                &nbsp;
+                            </div>
+                            <div class="offerFooterCell">
+                                &nbsp;
+                            </div>
+                            <div class="offerFooterCellTotal">
+                                Grand Total ($)
+                            </div>
+                            <div class="offerCellAmount" id="grandtotal">
+                                $offer.getOrderGrandTotalPrice()
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="cell">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

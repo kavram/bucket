@@ -1,0 +1,518 @@
+<div class="offerid" id="oid_$offr.getOffer().getINode("id").getValue().toString()">
+    <div class="offerGridWrap">
+        <script>
+			if (offrs == undefined)
+				var offrs = [];
+			offrs.push({
+				id : $offr.getOffer().getNodeValueAsStr("id"),
+				items : $offr.getOffer().getNodeValueAsStr("items"),
+				total : $offr.getOffer().getNodeValueAsStr("total"),
+				total_ordered : $offr.getOffer().getNodeValueAsStr("total_ordered"),
+				discounts : $offr.getOffer().getNodeValueAsStr("discounts"),
+				status : $offr.getOffer().getNodeValueAsStr("status")
+			});
+			#if($type == 'myorders')
+			if(ordrs == undefined)
+			var ordrs = [];
+			ordrs.push({id:$offr.getOrder().getNodeValueAsStr("id"),oid:$offr.getOffer().getNodeValueAsStr("id"),items:"$offr.getOrder().getNodeValueAsStr("items")",
+			status:$offr.getOrder().getNodeValueAsStr("status"),ud:$offr.getOrder().getNodeValueAsStr("user_details")});
+			#elseif($type == 'myoffers')
+			if(ordrs == undefined)
+			var ordrs = [];
+			ordrs.push({oid:$offr.getOffer().getNodeValueAsStr("id"),orders:$offr.getOfferOrdersAsJsonString()});
+			#end
+        </script>
+        <div class="row">
+            <div class="offerTableHeader">
+                <div class="offerGrid" id="shareTbl">
+                    <div class="row">
+                        <div class="cell" style="text-align:left;">
+                        	#if($offr.getOffer().getINode("biz_name").getValue().getString("logo"))
+                            	<img  class="titleImg" src="http://${imagesUrl}$offr.getOffer().getINode("biz_name").getValue().getString("logo")" alt="$offr.getOffer().getINode("biz_name").getValue().getString("name")"/>
+							#else
+                                <div class="titleImg">&nbsp;</div>
+							#end
+                            <div id="biz_name">
+                                $offr.getOffer().getINode("biz_name").getValue().getString("name")
+                            </div>
+                            <span  id="name"> $offr.getOffer().getNodeValueAsStr("name") </span>
+                            <span style="display:inline;"></span>
+                            #if($offr.getOffer().getNodeValueAsStr("status") == "1")
+                            <span class="share">
+                                <button id="share" class="smallButton" title="Link to this offer">
+                                    &nbsp;
+                                </button>
+                            </span>
+                            <span class="email">
+                                <button id="email" class="smallButton" title="Email to a friend">
+                                    &nbsp;
+                                </button>
+                            </span>
+                            #end
+                        </div>
+                        <div class="cell" id="fbDiv">
+                            #if($offr.getOffer().getNodeValueAsStr("status") == "1")
+                            <fb:like href="http://${domain}/offer/$offr.getOffer().getNodeValueAsStr("id")" send="false" layout="button_count" width="520" show-faces="false"></fb:like>
+                            #end
+                        </div>
+                        <div class="cell" id="twitDiv" >
+                            #if($offr.getOffer().getNodeValueAsStr("status") == "1")
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://${domain}/offer/$offr.getOffer().getNodeValueAsStr("id")" data-text="$offr.getOffer().getNodeValueAsStr("name")"></a>
+                            #end
+                        </div>
+                        <div class="cell" style="width:30px" >
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell">
+                <div class="offerHeader">
+                    <div class="row">
+                        <div class="cell">
+                            <div class="offerGrid">
+                                #if($offr.getOffer().getNodeValueAsStr("status") != "3")
+                                <div class="row">
+                                    <div class="offerHeaderCell">
+                                        Offer Close Date:
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="offerHeaderTextCell"  id="close_date">
+                                        $closeDateFormat.format($offr.getOffer().getINode("close_date").getValue())
+                                    </div>
+                                </div>
+                                #elseif($offr.getOffer().getNodeValueAsStr("status") == "3" && $type == "myorders")
+                                <div class="row">
+                                    #if($offr.getOrder().getNodeValueAsStr("status") == "3")
+                                    <div class="gridHeader">
+                                        This offer is closed. Please pickup your order.
+                                    </div>
+                                    #elseif($offr.getOrder().getNodeValueAsStr("status") == "4")
+                                    <div class="gridHeader">
+                                        Thank you for your order.
+                                    </div>
+                                    #end
+                                </div>
+                                #end
+                                <div class="row">
+                                    <div class="cell" style="height:5px;line-height:1px;">
+                                        &nbsp;
+                                    </div>
+                                </div>
+                                #if($offr.getOffer().getNodeValueAsStr("status") != "3" ||( $offr.getOffer().getNodeValueAsStr("status") == "3" &&
+                                $type == "myorders" && $offr.getOrder().getNodeValueAsStr("status") != "4"))
+                                <div class="row">
+                                    <div class="offerHeaderCell" >
+                                        Order Pickup:<span id="pickup_address_map"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="offerHeaderTextCell" id="pickup_time">
+                                        #set( $picktype = $OfferHelper.getPickupDatesType )
+                                        #if( $offr.getPickupDatesType() == "fd" )
+                                        $offr.getFixedDatesPickup()
+                                        #else
+                                        #foreach( $wd in $offr.getPickupWDays() )
+                                        $wd.getString("from") - $wd.getString("to") $wd.getString("day")
+                                        </br>
+                                        #end
+                                        #end
+                                    </div>
+                                </div>
+                                #if($offr.getPickupName() != "")
+                                <div class="row">
+                                    <div class="offerHeaderTextCell" id="pickup_name">
+                                        $offr.getPickupName()
+                                    </div>
+                                </div>
+                                #end
+                                <div class="row">
+                                    <div class="offerHeaderTextCell" id="pickup_address">
+                                        $offr.getOffer().getINode("pickup").getValue().getString("address")</br>
+                                        $offr.getOffer().getINode("pickup").getValue().getString("city") $offr.getOffer().getINode("pickup").getValue().getString("state") $offr.getOffer().getINode("pickup").getValue().getString("zipcode")
+                                    </div>
+                                </div>
+                                #if($offr.getPickupNote() != "")
+                                <div class="row">
+                                    <div class="offerHeaderTextCell" >
+                                        <div id="pickup_note">
+                                            <span>$offr.getPickupNote()</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                #end
+                                #end
+
+                            </div>
+                        </div>
+                        <div class="cell cellBar">
+                            <div class="offerGrid">
+                                <div class="row">
+                                    <div class="prBarHeader">
+                                        DISCOUNT PROGRESS BAR
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="cell">
+                                        <div id="progBarWrapper">
+                                            <div class="prBar"></div><div class="prBarVal"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell">
+                <div class="gridHeader">
+                    #if($type =='myorders' && ($offr.getOrder().getNodeValueAsStr("status") == "3" ||
+                    $offr.getOrder().getNodeValueAsStr("status") == "4"))
+                    Order Items
+                    #else
+                    Offer Items
+                    #end
+                </div>
+            </div>
+        </div>
+        #if($type != 'myoffers')
+        <div class="row">
+            <div class="cell" id="itemsTblCell">
+                <div  id="itemsTbl">
+                    <div class="row">
+                        <div class="itemHeaderCell">
+                            Name
+                        </div>
+                        <div class="itemHeaderCell priceColumn">
+                            Price
+                        </div>
+                        <div class="itemHeaderCell qtyColumn">
+                            Available
+                        </div>
+                        <div class="itemHeaderCell qtyColumn">
+                            Order Qty
+                        </div>
+                        <div class="itemHeaderCell totalColumn">
+                            Total
+                        </div>
+                    </div>
+                    #if($offr.getOffer().getNodeValueAsStr("status") != "3")
+                    #foreach( $item in $offr.getItems() )
+                    <div class="row iteminfo" id="$item.getString("id")">
+                        <div class="offerCell" id="iname">
+                            $item.getString("name")
+                        </div>
+                        <div class="offerCell" id="iprice">
+                            $$item.getString("price") / $item.getString("unit")
+                        </div>
+                        <div class="offerCell" id="ileft">
+                            <span>$item.getString("lft")</span> $item.getString("unit")(s)
+                        </div>
+                        #if($type == 'offer')
+                        <div class="offerCell qtyColumn">
+                            <input type="text" id="qty" name="qty" class="qty" maxlength="6" autocomplete="off">
+                        </div>
+                        <div class="offerCell" id="itotal">
+                            $0.00
+                        </div>
+                        #elseif($type == 'myorders')
+                        #if($offr.getOrderItemQty($item.getString("id")) == "0")
+                        <div class="offerCell qtyColumn">
+                            <input type="text" id="qty" name="qty" class="qty" maxlength="6" autocomplete="off">
+                        </div>
+                        <div class="offerCell" id="itotal">
+                            $0.00
+                        </div>
+                        #else
+                        <div class="offerCell qtyColumn">
+                            <input type="text" id="qty" name="qty" class="qty" maxlength="6" autocomplete="off" value="$offr.getOrderItemQty($item.getString("id"))">
+                        </div>
+                        <div class="offerCell" id="itotal">
+                            $$offr.calcItemTotalPrice($offr.getOrderItemQty($item.getString("id")), $item.getString("price"))
+                        </div>
+                        #end
+                        #end
+                    </div>
+                    #end
+                    #elseif($offr.getOffer().getNodeValueAsStr("status") == "3" && $type == 'myorders')
+                    #foreach( $item in $offr.getItems() )
+                    #if($offr.getOrderItemQty($item.getString("id")) != "0")
+                    <div class="row iteminfo" id="$item.getString("id")">
+                        <div class="offerCell" id="iname">
+                            $item.getString("name")
+                        </div>
+                        <div class="offerCell" id="iprice">
+                            $$item.getString("price") / $item.getString("unit")
+                        </div>
+                        <div class="offerCell" id="ileft">
+                            <span>$item.getString("lft")</span> $item.getString("unit")(s)
+                        </div>
+                        <div class="offerCell qtyColumn">
+                            $offr.getOrderItemQty($item.getString("id"))
+                        </div>
+                        <div class="offerCell" id="itotal">
+                            $$offr.calcItemTotalPrice($offr.getOrderItemQty($item.getString("id")), $item.getString("price"))
+                        </div>
+                    </div>
+                    #end
+                    #end
+                    #end
+                    <div class="row" id="offerFooter">
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerCellRight">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCellTotal">
+                            Discount (%)
+                        </div>
+                        <div class="offerCellAmount" id="discount">
+                            $offr.getOfferDiscount()
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="offerFooterCell" id="submitOrderCell">
+                            #if($offr.getOffer().getNodeValueAsStr("status") != "3")
+                            #if($type == 'offer')
+                            <button id="submitOrder">
+                                Submit Order
+                            </button>
+                            #elseif($type == 'myorders')
+                            <button id="updateOrder">
+                                Update Order
+                            </button>
+                            <button id="cancelOrder">
+                                Cancel Order
+                            </button>
+                            #end
+                            #elseif($offr.getOffer().getNodeValueAsStr("status") == "3")
+                            #if($type == 'myorders' && $offr.getOrder().getNodeValueAsStr("status") == "3")
+                            <button id="cancelOrder">
+                                Cancel Order
+                            </button>
+                            #elseif($type == 'myorders' && $offr.getOrder().getNodeValueAsStr("status") == "4")
+                            <button id="cancelOrder">
+                                Delete Order
+                            </button>
+                            #end
+                            #end
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCellTotal">
+                            Grand Total ($)
+                        </div>
+                        <div class="offerCellAmount" id="grandtotal">
+                            #if($type == 'offer')
+                            &nbsp;
+                            #elseif($type == 'myorders')
+                            $offr.getOrderGrandTotalPrice()
+                            #end
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        #elseif($type == 'myoffers')
+        <div class="row">
+            <div class="cell" id="itemsTblCell">
+                <div  id="itemsTbl">
+                    <div class="row">
+                        <div class="itemHeaderCell">
+                            Name
+                        </div>
+                        <div class="itemHeaderCell priceColumn">
+                            Price
+                        </div>
+                        <div class="itemHeaderCell qtyColumn">
+                            Available
+                        </div>
+                        <div class="itemHeaderCell qtyColumn">
+                            Ordered
+                        </div>
+                    </div>
+                    #foreach( $item in $offr.getItems() )
+                    <div class="row iteminfo" id="$item.getString("id")">
+                        <div class="offerCell" id="iname">
+                            $item.getString("name")
+                        </div>
+                        <div class="offerCell" id="iprice">
+                            $$item.getString("price") / $item.getString("unit")
+                        </div>
+                        <div class="offerCell" id="ileft">
+                            <span>$item.getString("lft")</span> $item.getString("unit")(s)
+                        </div>
+                        <div class="offerCell qtyColumn">
+                            <span>$offr.getItemOrderedNum($item.getString("id"))</span> $item.getString("unit")(s)
+                        </div>
+                    </div>
+                    #end
+                    <div class="row" id="offerFooter">
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="offerFooterCell" id="submitOrderCell">
+                            #if($offr.getOffer().getNodeValueAsStr("status") == "0" || $offr.getOffer().getNodeValueAsStr("status") == "1")
+                            <button id="editOffer">
+                                Edit Offer
+                            </button>
+                            <button id="cancelOffer">
+                                Cancel Offer
+                            </button>
+                            #if($offr.getOffer().getNodeValueAsStr("status") == "0")
+                            <button id="statusButton">
+                                Publish
+                            </button>
+                            #else
+                            <button id="statusButton">
+                                Unpublish
+                            </button>
+                            #end
+                            #elseif($offr.getOffer().getNodeValueAsStr("status") == "3")
+
+                            #end
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                        <div class="offerFooterCell">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell" id="itemsTblCell">
+                <div  id="itemsTbl">
+                    <div class="row">
+                        <div class="cell">
+                            <div class="gridHeader" id="orderCaption">
+                                <a id="pndOrds">Pending Orders</a> | <a id="cmplOrds">Completed Orders</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" id="orderRow">
+                        <div class="cell">
+                            <div  id="ordersTbl">
+                                <div class="row">
+                                    <div class="cell">
+                                        <div id="customerTbl">
+                                            <div class="row">
+                                                <div class="cell" id="custLabel">
+                                                    Customer:
+                                                </div>
+                                                <div class="cell" id="custName"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="cell" id="custLabel">
+                                                    Order Date:
+                                                </div>
+                                                <div class="cell" id="orderDate"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="cell">
+                                        <div  id="custItemsTbl">
+                                            <div class="row">
+                                                <div class="itemHeaderCell">
+                                                    Name
+                                                </div>
+                                                <div class="itemHeaderCell priceColumn">
+                                                    Price
+                                                </div>
+                                                <div class="itemHeaderCell qtyColumn">
+                                                    Qty
+                                                </div>
+                                            </div>
+                                            <div class="row" id="offerCustFooter">
+                                                <div class="offerFooterCell">
+                                                    &nbsp;
+                                                </div>
+                                                <div class="offerFooterCell">
+                                                    &nbsp;
+                                                </div>
+                                                <div class="offerCellRight">
+                                                    &nbsp;
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="offerFooterCell">
+                                                    &nbsp;
+                                                </div>
+                                                <div class="offerFooterCellTotal ">
+                                                    Discount (%)
+                                                </div>
+                                                <div class="offerCellAmount" id="custDiscount">
+                                                    &nbsp;
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="offerFooterCell" id="controlOrderCell"></div>
+                                                <div class="offerFooterCellTotal">
+                                                    Grand Total ($)
+                                                </div>
+                                                <div class="offerCellAmount" id="custTotal">
+                                                    &nbsp;
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        #end
+    </div>
+</div>
+<br/>

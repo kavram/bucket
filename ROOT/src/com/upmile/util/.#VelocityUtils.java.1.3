@@ -1,0 +1,21 @@
+package com.upmile.util;
+
+import java.util.Properties;
+
+import org.apache.velocity.app.Velocity;
+
+public class VelocityUtils {
+	
+	public static void init(){
+		try {
+			Properties props = new Properties();
+			props.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, "/Profile KA/workspace/ROOT/WebContent/velocity_templates");
+			props.setProperty(Velocity.RESOURCE_LOADER, "file");
+			
+			Velocity.init(props);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

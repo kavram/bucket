@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<!-- By default, only the Clean and Build commands use this build script. -->
+<!-- Commands such as Run, Debug, and Test only use this build script if -->
+<!-- the Compile on Save feature is turned off for the project. -->
+<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
+<!-- in the project's Project Properties dialog box.-->
+<project name="upmileapp" default="ROOT" basedir=".">
+    <description>Builds, tests, and runs the project upmileapp.</description>
+
+	  <property file="build.properties"/>
+	  
+	  <property name="root.dir" value="."/>	
+	  <property name="source.dir" value="${root.dir}/src"/>
+	  <property name="project.dir" value="${root.dir}/WebContent"/>
+	  <property name="build.dir" value="${root.dir}/build"/>
+	  <property name="libraries.dir" value="${root.dir}/WebContent/WEB-INF/lib"/>
+	  <property name="classes.dir" value="${build.dir}/classes"/>
+	  <property name="dist.dir" value="${build.dir}/dist"/>
+	  <property name="ROOT.war" value="ROOT.war"/>
+	  <property name="deprecation" value="false"/>
+	  <property name="archive" value="${project}-${version}"/>
+	  
+	  <path id="project.class.path">
+	    <pathelement path="${libraries.dir}/commons-beanutils.jar"/>
+	    <pathelement path="${libraries.dir}/commons-beanutils-bean-collections.jar"/>
+	    <pathelement path="${libraries.dir}/commons-beanutils-core.jar"/>
+	  	<pathelement path="${libraries.dir}/commons-fileupload-1.2.2.jar"/>
+	    <pathelement path="${tomcat.lib.dir}/servlet-api.jar"/>
+	  	<pathelement path="${tomcat.lib.dir}/jsp-api.jar"/>
+	    <pathelement path="${libraries.dir}/commons-cli-1.0.jar"/>
+	  	<pathelement path="${libraries.dir}/commons-codec-1.4.jar"/>
+	    <pathelement path="${libraries.dir}/commons-collections-3.2.jar"/>
+	    <pathelement path="${libraries.dir}/commons-lang-2.3.jar"/>
+	    <pathelement path="${libraries.dir}/commons-logging-1.1.jar"/>
+	    <pathelement path="${libraries.dir}/commons-logging-adapters-1.1.jar"/>
+	    <pathelement path="${libraries.dir}/commons-logging-api-1.1.jar"/>
+	  	<pathelement path="${libraries.dir}/ezmorph-1.0.3.jar"/>
+	    <pathelement path="${libraries.dir}/gifencoder.jar"/>
+	    <pathelement path="${libraries.dir}/janino-2.5.10.jar"/>
+	    <pathelement path="${libraries.dir}/json-0.10.jar"/>
+	    <pathelement path="${libraries.dir}/jsr94-1.1.jar"/>
+	    <pathelement path="${libraries.dir}/jstl.jar"/>
+	  	<pathelement path="${libraries.dir}/junit-3.8.1.jar"/>
+	    <pathelement path="${libraries.dir}/jxl-2.4.2.jar"/>
+	    <pathelement path="${libraries.dir}/kabuki.jar"/>
+	    <pathelement path="${libraries.dir}/mail.jar"/>
+	    <pathelement path="${libraries.dir}/mailapi.jar"/>
+	    <pathelement path="${libraries.dir}/mvel14-1.2.10.jar"/>
+	  	<pathelement path="${libraries.dir}/mysql-connector-java-5.0.6-bin.jar"/>
+	    <pathelement path="${libraries.dir}/quartz-1.8.6.jar"/>
+	    <pathelement path="${libraries.dir}/standard.jar"/>
+	    <pathelement path="${libraries.dir}/velocity-1.7.jar"/>
+	    <pathelement path="${libraries.dir}/xercesImpl-2.4.0.jar"/>
+	    <pathelement path="${libraries.dir}/xml-apis-1.0.b2.jar"/>
+	  	<pathelement path="${libraries.dir}/xstream-1.2.2.jar"/>
+	  	<pathelement path="${libraries.dir}/log4j-1.2.15.jar"/>
+	  	<pathelement path="${libraries.dir}/org.apache.httpcomponents.httpclient_4.2.1.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.aop-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.asm-3.0.3.RELEASE.jar"/>
+		<pathelement path="${libraries.dir}/org.springframework.aspects-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.beans-3.0.3.RELEASE.jar"/>
+		<pathelement path="${libraries.dir}/org.springframework.context-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.context.support-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.core-3.0.3.RELEASE.jar"/>
+		<pathelement path="${libraries.dir}/org.springframework.expression-3.0.3.RELEASE.jar"/>
+		<pathelement path="${libraries.dir}/org.springframework.instrument-3.0.3.RELEASE.jar"/>
+		<pathelement path="${libraries.dir}/org.springframework.instrument.tomcat-3.0.3.RELEASE.jar"/>
+		<pathelement path="${libraries.dir}/org.springframework.jdbc-3.0.3.RELEASE.jar"/>
+		<pathelement path="${libraries.dir}/org.springframework.jms-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.orm-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.oxm-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.test-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.transaction-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.web-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.web.portlet-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.web.servlet-3.0.3.RELEASE.jar"/>
+	  	<pathelement path="${libraries.dir}/org.springframework.web.struts-3.0.3.RELEASE.jar"/>
+	  </path>
+
+	  <target name="targets" description="Display all the targets">
+	    <echo><![CDATA[
+	The following targets are available:
+
+	targets                       Display all the targets
+	clean                         Clean the build and distribution package
+
+	compile-all			        Compiles upmile files
+	upmile					Builds WAR for Upmile
+	deploy                      Deploys to local tomcat
+	]]></echo>
+	  </target>
+
+
+	  <target name="clean" description="Clean the build and distribution package">
+	    <delete dir="${dist.dir}"/>
+	    <delete dir="${classes.dir}"/>
+	  </target>
+
+	  <target name="init">
+	    <mkdir dir="${classes.dir}"/>
+	    <mkdir dir="${dist.dir}"/>
+	    <tstamp/>
+	  </target>
+
+	   <!-- BEGIN UPMILEAPP -->	
+	  <target name="compile-all" depends="init">
+	    <javac 
+	        srcdir="${source.dir}" 
+	        destdir="${classes.dir}" 
+	        debug="on" 
+	        deprecation="${deprecation}">
+	           <include name="com/**/*.java"/>
+	    	   <exclude name="com/upmile/junit/*.java"/>	
+	           <classpath refid="project.class.path"/>
+	    </javac>
+	  	<copy todir="${classes.dir}">
+		<fileset dir="${source.dir}">
+		  <include name="*.properties"/>
+	        </fileset>
+	    </copy>	
+	  </target>
+
+	  <target name="ROOT" description="Builds the war package for Upmile Web App" 
+	  	depends="clean, compile-all">
+	    <!-- Set time stamp-->
+	    <tstamp/>
+	    <delete file="${dist.dir}/${ROOT.war}"/>
+	    <war destfile="${dist.dir}/${ROOT.war}"
+	         webxml="${project.dir}/WEB-INF/web.xml">
+	      <fileset dir="${project.dir}" includes="*.jsp">
+	      	<include name="static/**/*.*"/>
+	      	<include name="META-INF/*.*"/>
+	      	<include name="WEB-INF/*.xml"/>
+	      	<include name="WEB-INF/views/*.vm"/>
+	      </fileset>
+	      <lib dir="${libraries.dir}">
+	        <include name="*.jar"/>
+	      </lib>
+
+	      <classes dir="${classes.dir}">
+			<include name="*.*"/>
+			<include name="com/**/*.*"/>
+	      </classes>
+	    </war>
+	  </target>
+
+</project>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate"/>
+        <meta http-equiv="Cache-Control" content="post-check=1, pre-check=2"/>
+        <meta http-equiv="Expires" content="-1"/>
+        <title>Registration</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/fixedWidth.css"/>
+        <link type="text/css" href="/static/css/blitzer/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
+        <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-ui-1.8.20.custom.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.utils.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/utils.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.reg.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.payload.utils.js"></script>
+        <script type="text/javascript">
+			$(document).ready(function() {
+				$.reg.init();
+			});
+        </script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <div class="header_icon">&nbsp;</div>
+                &nbsp;
+            </div>
+            <div class="content" id="regform">
+                <div class="gridContent"  >
+                    <div class="row">
+                        <div class="cell leftContent">
+                            &nbsp;
+                        </div>
+                        <div class="cell rightContent regform">
+                            <label >Already registred?</label>
+                            <a href="/signin" id="login">Sign In</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="cell regform signinLeftContent" id="formcell">
+                            <ol>
+                                <li>
+                                    <label id="title">Please fill out the form below</label>
+                                </li>
+                                  <li>
+                                    <label id="errorMsg">&nbsp;</label>
+                                </li>
+
+                                <li>
+                                    <label for="fName" id="fNamelabel">First Name<em>*</em></label>
+                                    <input required="true" type="text" maxlength="20" id="fName" name="fName" required="true" validation="required:true"/>
+                                </li>
+                                <li>
+                                    <label for="lName" id="lNamelabel" >Last Name<em>*</em></label>
+                                    <input required="true" type="text" maxlength="20" id="lName" name="lName" validation="required:true"/>
+                                </li>
+                                <li>
+                                    <label for="email" id="emaillabel">Email<em>*</em></label>
+                                    <input required="true" type="text" maxlength="70" id="email" name="email" validation="required:true"/>
+                                </li>
+                                <li>
+                                    <label for="pass" id="passlabel">Password<em>*</em></label>
+                                    <input required="true" type="password" maxlength="10" id="pass" name="password" validation="required:true"/>
+                                </li>
+                                <li>
+                                    <label for="confpass" id="confpasslabel">Confirm Password<em>*</em></label>
+                                    <input required="true" type="password" maxlength="10" id="confpass" name="confirmPassword" validation="required:true"/>
+                                </li>
+                                <li>
+                                    <label for="zipcode">Zipcode<em>*</em></label>
+                                    <input type="text" maxlength="5" id="zipcode" name="zipcode" validation="min:5,alldigits:true"/>
+                                </li>
+                                <li id="butcell">
+                                    <button type="submit" id="submitButton">
+                                        Submit
+                                    </button>
+                                    &nbsp;
+                                    <button type="button" id="cancelButton">
+                                        Cancel
+                                    </button>
+                                    <br/>&nbsp;
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="cell">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+            #parse("footer.vm")
+        </div>
+    </body>
+</html>

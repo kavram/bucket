@@ -1,0 +1,20 @@
+#set ($subject = $offer.getINode("name").getValue())
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+</head>
+<body>
+$from wants to share this offer with you:
+&nbsp;
+#if($message)
+Personal Message:
+$message
+#end
+&nbsp;
+Offer:
+&nbsp;
+$offer.getNodeValueAsStr("name")
+&nbsp;
+http://$domain/offer/$offer.getNodeValueAsStr("id")
+</body>
+</html>

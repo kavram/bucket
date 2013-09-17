@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate"/>
+        <meta http-equiv="Cache-Control" content="post-check=1, pre-check=2"/>
+        <meta http-equiv="Expires" content="-1"/>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <title>Merchant Registration</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/fixedWidth.css"/>
+        <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.utils.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/utils.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.bizreg.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.payload.utils.js"></script>
+        <script type="text/javascript" src="/static/js/widgets/jquery.header.js"></script>
+        <script type="text/javascript">
+			var user = $user;
+			$(document).ready(function() {
+				$.header.init(['myaccount', 'myorders', 'bizreg', 'signout']);
+				$.bizreg.init();
+			});
+        </script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <div class="header_icon">
+                    &nbsp;
+                </div>
+                <div class="account"></div>
+            </div>
+            <form id="formBizReg" method="Post" enctype="multipart/form-data" action="/newbiz">
+                <div class="content" id="regform">
+                    <div class="gridContent">
+					    <div class="row" name="submit_status_row" submit_status="$status" submit_status_description="$status_description">
+					    	<div class="cell">
+					    		&nbsp;
+					    	</div>
+                            <div class="cell">
+                                &nbsp;
+                            </div>
+					    </div> 	                    
+                        <div class="row">
+                            <div class="cell1 regform signinLeftContent" id="formcell">
+                                <ol>
+                                    <li>
+                                        <label id="title">Merchant Registration.</label>
+                                    </li>
+                                    <li>
+                                        <label id="errorMsg">&nbsp;</label>
+                                    </li>
+                                    <li id="nameli">
+                                        <label for="name" id="namelabel">Name<em>*</em></label>
+                                        <input required="true" type="text" maxlength="20" id="name" name="name" required="true" validation="required:true"/>
+                                    </li>
+                                    <li id="descrli">
+                                        <label for="description" id="descriptionlabel" >Description</label>
+                                        <input required="false" type="text" maxlength="250" id="description" name="description" validation="required:false"/>
+                                    </li>
+                                    <li id="imageli">
+                                        <label for="bizlogo" id="bizlogolabel" >Business Logo</label>
+                                        <!--input required="false" type="file" id="logo" name="bizlogo" validation="required:false"/-->
+                                        <div class="fakeupload">
+                                            <input required="false" type="text"  id="logo" name="bizlogo" validation="required:false"/>
+                                            <button type="button" id="uploadButton" onclick="this.form.reallogo.click()">
+                                                Upload
+                                            </button>
+                                        </div>
+                                        <input type="file" name="reallogo" id="reallogo" class="reallogo" onchange="this.form.bizlogo.value = this.value;" />
+
+                                    </li>
+
+                                    <li id="emailli">
+                                        <label for="email" id="emaillabel">Email<em>*</em></label>
+                                        <input required="true" type="text" maxlength="70" id="email" name="email" validation="required:true"/>
+                                    </li>
+                                    <li id="phoneli">
+                                        <label for="phone" id="phonelabel">Phone<em>*</em></label>
+                                        <input required="true" type="text" maxlength="10" id="phone" name="phone" validation="required:true"/>
+                                    </li>
+                                    <li id="streetli">
+                                        <label for="street" id="streetlabel">Street<em>*</em></label>
+                                        <input required="true" type="text" maxlength="100" id="street" name="street" validation="required:true"/>
+                                    </li>
+                                    <li id="cityli">
+                                        <label for="city" id="citylabel">City<em>*</em></label>
+                                        <input required="true" type="text" maxlength="100" id="city" name="city" validation="required:true"/>
+                                    </li>
+                                    <li id="stateli">
+                                        <label for="state" id="statelabel">State<em>*</em></label>
+                                        <!--input required="true" type="state" maxlength="20" id="state" name="state" validation="required:true"/-->
+                                            <select id="state" name="state" required="true" validation="required:true"></select>
+                                    </li>
+                                    <li id="zipcodeli">
+                                        <label for="zipcode">Zipcode</label>
+                                        <input type="text" maxlength="5" id="zipcode" name="zipcode" validation="min:5,alldigits:true"/>
+                                    </li>
+                                     <li id="termli">
+                                        <label for="term">&nbsp</label>
+                                        <input type="checkbox" id="term" name="term"/>&nbsp;   <div id="termSpan">Agree to terms....</div>
+                                    </li>
+                                    <li id="butcell">
+                                        <button type="submit" id="submitButton">
+                                            Submit
+                                        </button>
+                                        &nbsp;
+                                        <button type="button" id="cancelButton">
+                                            Cancel
+                                        </button>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="cell">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            #parse("footer.vm")
+        </div>
+    </body>
+</html>

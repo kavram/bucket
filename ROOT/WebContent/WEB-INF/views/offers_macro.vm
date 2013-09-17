@@ -1,0 +1,3 @@
+#foreach( $offr in $offerslist )
+#parse( "offer_html.vm" )
+#end
