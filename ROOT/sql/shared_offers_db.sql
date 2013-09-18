@@ -42,7 +42,7 @@ CREATE TABLE `data_biz` (
   `status` bigint(20) unsigned NOT NULL DEFAULT '0',
   `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_biz`
@@ -57,15 +57,7 @@ INSERT INTO `data_biz` (`id`,`owner_id`,`name`,`description`,`category_id`,`subc
  (31,90,'test3','descr',NULL,0,NULL,'1347323857472RSS.png','4153454466',NULL,'test3@test.com',NULL,0,'2012-09-10 17:37:37'),
  (32,90,'test3','descr',NULL,0,NULL,'1347339092914arrow_left.png','4153456799',NULL,'test1@test.com',NULL,0,'2012-09-10 21:51:32'),
  (33,90,'test3','descr',NULL,0,NULL,'1347342866227_arrow_left.png','4153456799',NULL,'test1@test.com',NULL,0,'2012-09-10 22:54:26'),
- (34,345,'test',NULL,1,4,NULL,NULL,'4152345566',NULL,'test@test.com',NULL,0,'2013-01-03 14:48:09'),
- (35,345,'test123',NULL,2,5,NULL,NULL,'4152344433',NULL,'test@test.com',NULL,0,'2013-01-03 17:23:29'),
- (36,345,'test333',NULL,1,3,NULL,NULL,'4154567788',NULL,'test@test.com',NULL,0,'2013-01-03 17:38:27'),
- (37,345,'test',NULL,1,2,NULL,NULL,'415456778',NULL,'test@test.com',NULL,0,'2013-01-03 21:51:07'),
- (38,345,'test123',NULL,1,2,NULL,NULL,'4158903456',NULL,'test@test.com',NULL,0,'2013-01-07 16:42:21'),
- (39,345,'test',NULL,1,1,NULL,NULL,'4152344455',NULL,'test@test.com',NULL,0,'2013-01-07 17:04:59'),
- (40,345,'test',NULL,1,2,NULL,NULL,'4154562233',NULL,'test@test.com',NULL,0,'2013-01-08 21:31:23'),
- (41,345,'test',NULL,1,2,NULL,NULL,'4154562233',NULL,'test@test.com',NULL,0,'2013-01-08 21:32:34'),
- (42,345,'test',NULL,1,2,NULL,NULL,'4154565566',NULL,'test@test.com',NULL,0,'2013-01-08 21:36:30');
+ (34,345,'test',NULL,1,4,NULL,NULL,'4152345566',NULL,'test@test.com',NULL,1,'2013-01-03 14:48:09');
 /*!40000 ALTER TABLE `data_biz` ENABLE KEYS */;
 
 
@@ -107,6 +99,8 @@ CREATE TABLE `data_biz_location` (
   `city` varchar(100) DEFAULT NULL,
   `state` varchar(2) DEFAULT NULL,
   `zipcode` varchar(5) DEFAULT NULL,
+  `longitude` float NOT NULL,
+  `latitude` float NOT NULL,
   `phone` varchar(50) DEFAULT NULL,
   `fax` varchar(50) DEFAULT NULL,
   `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -118,23 +112,23 @@ CREATE TABLE `data_biz_location` (
 --
 
 /*!40000 ALTER TABLE `data_biz_location` DISABLE KEYS */;
-INSERT INTO `data_biz_location` (`id`,`biz_id`,`name`,`street`,`city`,`state`,`zipcode`,`phone`,`fax`,`dt`) VALUES 
- (1,7,NULL,'5616 Geary blvd, Suite 207','San Francisco','CA','94121',NULL,NULL,'2010-01-02 12:50:07'),
- (14,26,NULL,'1 market','san francisco','ca','94103',NULL,NULL,'2012-05-09 22:05:33'),
- (16,28,NULL,'str1','sf','ca','94103',NULL,NULL,'2012-07-28 23:43:02'),
- (18,30,NULL,'1 main st.','san francisco','ca','94103',NULL,NULL,'2012-09-10 17:22:30'),
- (19,31,NULL,'1 main st.','san francisco','ca','94103',NULL,NULL,'2012-09-10 17:37:37'),
- (20,32,NULL,'1 main st','sf','ca','94103',NULL,NULL,'2012-09-10 21:51:32'),
- (21,33,NULL,'1 main st','sf','ca','94103',NULL,NULL,'2012-09-10 22:54:26'),
- (22,34,NULL,'1 pine','sf','CA','94103',NULL,NULL,'2013-01-03 14:48:09'),
- (23,35,NULL,'1 pine','sf','CA','94103',NULL,NULL,'2013-01-03 17:23:29'),
- (24,36,NULL,'1 pine','sf','CA','94103',NULL,NULL,'2013-01-03 17:38:27'),
- (25,37,NULL,'1 pine','sf','CA','94103',NULL,NULL,'2013-01-03 21:51:07'),
- (26,38,NULL,'1 pine','sf','CA','94103',NULL,NULL,'2013-01-07 16:42:21'),
- (27,39,NULL,'1 pine','sf','CA','94103',NULL,NULL,'2013-01-07 17:04:59'),
- (28,40,NULL,'1 pine','sf','CA','94103',NULL,NULL,'2013-01-08 21:31:23'),
- (29,41,NULL,'1 pine','sf','CA','94103',NULL,NULL,'2013-01-08 21:32:34'),
- (30,42,NULL,'1 pine','sf','CA','94103',NULL,NULL,'2013-01-08 21:36:30');
+INSERT INTO `data_biz_location` (`id`,`biz_id`,`name`,`street`,`city`,`state`,`zipcode`,`longitude`,`latitude`,`phone`,`fax`,`dt`) VALUES 
+ (1,7,NULL,'5616 Geary blvd, Suite 207','San Francisco','CA','94121',0,0,NULL,NULL,'2010-01-02 12:50:07'),
+ (14,26,NULL,'1 market','san francisco','ca','94103',0,0,NULL,NULL,'2012-05-09 22:05:33'),
+ (16,28,NULL,'str1','sf','ca','94103',0,0,NULL,NULL,'2012-07-28 23:43:02'),
+ (18,30,NULL,'1 main st.','san francisco','ca','94103',0,0,NULL,NULL,'2012-09-10 17:22:30'),
+ (19,31,NULL,'1 main st.','san francisco','ca','94103',0,0,NULL,NULL,'2012-09-10 17:37:37'),
+ (20,32,NULL,'1 main st','sf','ca','94103',0,0,NULL,NULL,'2012-09-10 21:51:32'),
+ (21,33,NULL,'1 main st','sf','ca','94103',0,0,NULL,NULL,'2012-09-10 22:54:26'),
+ (22,34,NULL,'1 pine','sf','CA','94103',0,0,NULL,NULL,'2013-01-03 14:48:09'),
+ (23,35,NULL,'1 pine','sf','CA','94103',0,0,NULL,NULL,'2013-01-03 17:23:29'),
+ (24,36,NULL,'1 pine','sf','CA','94103',0,0,NULL,NULL,'2013-01-03 17:38:27'),
+ (25,37,NULL,'1 pine','sf','CA','94103',0,0,NULL,NULL,'2013-01-03 21:51:07'),
+ (26,38,NULL,'1 pine','sf','CA','94103',0,0,NULL,NULL,'2013-01-07 16:42:21'),
+ (27,39,NULL,'1 pine','sf','CA','94103',0,0,NULL,NULL,'2013-01-07 17:04:59'),
+ (28,40,NULL,'1 pine','sf','CA','94103',0,0,NULL,NULL,'2013-01-08 21:31:23'),
+ (29,41,NULL,'1 pine','sf','CA','94103',0,0,NULL,NULL,'2013-01-08 21:32:34'),
+ (30,42,NULL,'1 pine','sf','CA','94103',0,0,NULL,NULL,'2013-01-08 21:36:30');
 /*!40000 ALTER TABLE `data_biz_location` ENABLE KEYS */;
 
 
@@ -167,6 +161,52 @@ INSERT INTO `data_biz_subcategory` (`id`,`category_id`,`name`,`status`,`dt`) VAL
  (7,2,'Other',0,'2012-12-30 22:35:43'),
  (8,1,'Other',0,'2012-12-30 22:35:43');
 /*!40000 ALTER TABLE `data_biz_subcategory` ENABLE KEYS */;
+
+
+--
+-- Definition of table `data_deal`
+--
+
+DROP TABLE IF EXISTS `data_deal`;
+CREATE TABLE `data_deal` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned NOT NULL,
+  `biz_id` bigint(20) unsigned NOT NULL,
+  `category_id` int(10) unsigned NOT NULL,
+  `subcategory_id` int(10) unsigned NOT NULL,
+  `status` int(10) unsigned NOT NULL,
+  `type` int(10) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(100) NOT NULL,
+  `description` varchar(250) DEFAULT NULL,
+  `pics` varchar(2000) DEFAULT NULL,
+  `expiration` datetime NOT NULL,
+  `regular_price` float NOT NULL,
+  `deal_price` float NOT NULL,
+  `address_name` varchar(100) DEFAULT NULL,
+  `street` varchar(100) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `state` varchar(2) DEFAULT NULL,
+  `phone` varchar(10) DEFAULT NULL,
+  `zipcode` varchar(5) DEFAULT NULL,
+  `latitude` float NOT NULL,
+  `longitude` float NOT NULL,
+  `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_deal`
+--
+
+/*!40000 ALTER TABLE `data_deal` DISABLE KEYS */;
+INSERT INTO `data_deal` (`id`,`user_id`,`biz_id`,`category_id`,`subcategory_id`,`status`,`type`,`name`,`description`,`pics`,`expiration`,`regular_price`,`deal_price`,`address_name`,`street`,`city`,`state`,`phone`,`zipcode`,`latitude`,`longitude`,`dt`) VALUES 
+ (1,345,34,1,4,0,0,'test','7937',NULL,'1970-01-01 22:34:00',12.44,12.44,'null','1 pine','sf','CA',NULL,'94103',0,0,'2013-01-24 22:53:19'),
+ (2,345,34,1,4,0,0,'test deal','descr',NULL,'1970-01-01 17:30:00',55.99,55.99,'swnull','1 pine','sf','CA',NULL,'94103',0,0,'2013-03-09 23:08:36'),
+ (3,345,34,1,4,0,0,'test deal','descr',NULL,'1970-01-01 17:30:00',55.99,55.99,'swnull','1 pine','sf','CA',NULL,'94103',0,0,'2013-03-09 23:10:07'),
+ (4,345,34,1,4,0,0,'test4','descr',NULL,'1970-01-01 15:45:00',22.99,22.99,'null','1 pine','sf','CA',NULL,'94103',0,0,'2013-03-09 23:17:01'),
+ (5,345,34,1,4,0,0,'test','descr1','[[\"1363067979917_IMG_20130312_055524_-1492511355.jpg\",\"1363067979921_IMG_20130312_055455_-1536283673.jpg\"]]','1970-01-01 16:55:00',11.99,11.99,'null','1 pine','sf','CA','4152345566','94103',0,0,'2013-03-11 22:59:39'),
+ (6,345,34,1,4,0,0,'test','descr1','[\"1363068282518_IMG_20130312_055524_-1492511355.jpg\",\"1363068282522_IMG_20130312_055455_-1536283673.jpg\"]','1970-01-01 16:55:00',11.99,11.99,'null','1 pine','sf','CA','4152345566','94103',0,0,'2013-03-11 23:04:42');
+/*!40000 ALTER TABLE `data_deal` ENABLE KEYS */;
 
 
 --
@@ -204,11 +244,11 @@ INSERT INTO `data_email` (`id`,`status`,`from_email`,`recip_to`,`subj`,`body`,`s
  (147,1,'kirill_avramenko@yahoo.com','kirill_avramenko@yahoo.com','offer1','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\nkirill_avramenko@yahoo.com wants to share this offer with you:\r\n&nbsp;\r\n&nbsp;\r\nOffer:\r\n&nbsp;\r\noffer1\r\n&nbsp;\r\nhttp://localhost:8080/offer/69\r\n</body>\r\n</html>','2012-11-25 22:24:00','2012-11-25 22:24:36'),
  (148,1,'mailer@upmile.com','kirill_avramenko@yahoo.com','Umpile.com New Order Notification','<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html>\r\n    <head>\r\n        <title>New Order</title>\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://$domain/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"text\">\r\n                Hello kirill!\r\n                <br/>\r\n                You have a new order placed on your offer <a href=\"http://$domain/myoffers\">offer1.</a>\r\n                <br/>\r\n            </div>\r\n            <br/>\r\n            <div sclass=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell header paragraph\">\r\n                        Customer:\r\n                    </div>\r\n                    <div class=\"cell\">\r\n                        kirill avr\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"cell\">\r\n                    Order Items\r\n                </div>\r\n                <div class=\"cell\">\r\n                    &nbsp;\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"cell\">\r\n                    <div id=\"itemsTbl\">\r\n                        <div class=\"row\">\r\n                            <div class=\"itemHeaderCell itemname\">\r\n                                Name\r\n                            </div>\r\n                            <div class=\"itemHeaderCell itemprice\">\r\n                                Price\r\n                            </div>\r\n                            <div class=\"itemHeaderCell itemqty\">\r\n                                Order Qty\r\n                            </div>\r\n                            <div class=\"itemHeaderCell itemtotal\">\r\n                                Total\r\n                            </div>\r\n                        </div>\r\n                                                                        <div class=\"row iteminfo\" id=\"117\">\r\n                            <div class=\"offerCell\" id=\"iname\">\r\n                                another\r\n                            </div>\r\n                            <div class=\"offerCell\" id=\"iprice\">\r\n                                $2.38 / bunch\r\n                            </div>\r\n                            <div class=\"offerCell qtyColumn\">\r\n                                20\r\n                            </div>\r\n                            <div class=\"offerCell\" id=\"itotal\">\r\n                                $47.6\r\n                            </div>\r\n                        </div>\r\n                                                                                                <div class=\"row iteminfo\" id=\"116\">\r\n                            <div class=\"offerCell\" id=\"iname\">\r\n                                new item\r\n                            </div>\r\n                            <div class=\"offerCell\" id=\"iprice\">\r\n                                $4.99 / bottle\r\n                            </div>\r\n                            <div class=\"offerCell qtyColumn\">\r\n                                40\r\n                            </div>\r\n                            <div class=\"offerCell\" id=\"itotal\">\r\n                                $199.6\r\n                            </div>\r\n                        </div>\r\n                                                                        <div class=\"row\">\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerCellAmount\">\r\n                                &nbsp;\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"row\">\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCellTotal\">\r\n                                Discount (%)\r\n                            </div>\r\n                            <div class=\"offerCellAmount\" id=\"discount\">\r\n                                6.43\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"row\">\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCellTotal\">\r\n                                Grand Total ($)\r\n                            </div>\r\n                            <div class=\"offerCellAmount\" id=\"grandtotal\">\r\n                                231.31\r\n                            </div>\r\n                        </div>\r\n                        <br>\r\n                    </div>\r\n                </div>\r\n                 <div class=\"cell\">\r\n                    &nbsp;\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>','2012-11-28 22:37:00','2012-11-28 21:06:56'),
  (149,1,'mailer@upmile.com','kirill_avramenko@yahoo.com','Upmile.com Order Cancellation','<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html>\r\n    <head>\r\n        <title>Order Cancellation</title>\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://$domain/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"text\">\r\n                Hello kirill!\r\n                <br/><br/>\r\n                The order placed on your offer <a href=\"http://$domain/myoffers\">offer1</a> has been cancelled by customer.<br/>\r\n            </div>\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Customer:\r\n                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n                        kirill avr\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"cell header paragraph\">\r\n                    Order Items\r\n                </div>\r\n            </div>\r\n            <div class=\"row\">\r\n                <div class=\"cell\">\r\n                    <div id=\"itemsTbl\">\r\n                        <div class=\"row\">\r\n                            <div class=\"itemHeaderCell itemname\">\r\n                                Name\r\n                            </div>\r\n                            <div class=\"itemHeaderCell itemprice\">\r\n                                Price\r\n                            </div>\r\n                            <div class=\"itemHeaderCell itemqty\">\r\n                                Order Qty\r\n                            </div>\r\n                            <div class=\"itemHeaderCell itemtotal\">\r\n                                Total\r\n                            </div>\r\n                        </div>\r\n                                                                        <div class=\"row iteminfo\" id=\"117\">\r\n                            <div class=\"offerCell\" id=\"iname\">\r\n                                another\r\n                            </div>\r\n                            <div class=\"offerCell\" id=\"iprice\">\r\n                                $2.38 / bunch\r\n                            </div>\r\n                            <div class=\"offerCell qtyColumn\">\r\n                                20\r\n                            </div>\r\n                            <div class=\"offerCell\" id=\"itotal\">\r\n                                $47.6\r\n                            </div>\r\n                        </div>\r\n                                                                                                <div class=\"row iteminfo\" id=\"116\">\r\n                            <div class=\"offerCell\" id=\"iname\">\r\n                                new item\r\n                            </div>\r\n                            <div class=\"offerCell\" id=\"iprice\">\r\n                                $4.99 / bottle\r\n                            </div>\r\n                            <div class=\"offerCell qtyColumn\">\r\n                                40\r\n                            </div>\r\n                            <div class=\"offerCell\" id=\"itotal\">\r\n                                $199.6\r\n                            </div>\r\n                        </div>\r\n                                                                        <div class=\"row\">\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerCellAmount noRightBorder\">\r\n                                &nbsp;\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"row\">\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCellTotal\">\r\n                                Discount (%)\r\n                            </div>\r\n                            <div class=\"offerCellAmount\" id=\"discount\">\r\n                                6.43\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"row\">\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCell\">\r\n                                &nbsp;\r\n                            </div>\r\n                            <div class=\"offerFooterCellTotal\">\r\n                                Grand Total ($)\r\n                            </div>\r\n                            <div class=\"offerCellAmount\" id=\"grandtotal\">\r\n                                231.31\r\n                            </div>\r\n                        </div>\r\n                        <br>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>',NULL,'2012-11-30 16:48:56'),
- (150,0,'mailer@upmile.com','kir@test.com','Upmile.com Account Email Confirmation','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n    <head>\r\n        <title >Upmile.com Account Confirmation</title>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Hello!\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:5px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        We wanted to confirm that you created account on www.upmile.com and you own this email address: <label>kir@test.com</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you created your account on www.upmile.com and you own this email address. Please click on this link:\r\n                        <a href=\"http://localhost:8080/authorize/3b7b9c7e-b924-467e-9cb0-043cee76050b/345/0\">Yes, I confirm. </a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you didn\'t create your account on www.upmile.com Please click on the link below and we\'ll remove that account from the system.\r\n                        <a href=\"http://localhost:8080/authorize/3b7b9c7e-b924-467e-9cb0-043cee76050b/345/1\">No, I didn\'t create account.</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:15px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Thanks,\r\n                        <br>\r\n                        Upmile.com\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>',NULL,'2012-12-27 14:09:28'),
- (151,0,'mailer@upmile.com','kir2@test.com','Upmile.com Account Email Confirmation','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n    <head>\r\n        <title >Upmile.com Account Confirmation</title>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Hello!\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:5px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        We wanted to confirm that you created account on www.upmile.com and you own this email address: <label>kir2@test.com</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you created your account on www.upmile.com and you own this email address. Please click on this link:\r\n                        <a href=\"http://localhost:8080/authorize/1b21a1e6-6930-49e7-8b18-34f50d28ff27/346/0\">Yes, I confirm. </a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you didn\'t create your account on www.upmile.com Please click on the link below and we\'ll remove that account from the system.\r\n                        <a href=\"http://localhost:8080/authorize/1b21a1e6-6930-49e7-8b18-34f50d28ff27/346/1\">No, I didn\'t create account.</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:15px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Thanks,\r\n                        <br>\r\n                        Upmile.com\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>',NULL,'2012-12-27 14:16:56'),
- (152,0,'mailer@upmile.com','kir3@test.com','Upmile.com Account Email Confirmation','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n    <head>\r\n        <title >Upmile.com Account Confirmation</title>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Hello!\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:5px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        We wanted to confirm that you created account on www.upmile.com and you own this email address: <label>kir3@test.com</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you created your account on www.upmile.com and you own this email address. Please click on this link:\r\n                        <a href=\"http://localhost:8080/authorize/70a069d0-7ab7-4024-ae87-5bca47031d22/347/0\">Yes, I confirm. </a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you didn\'t create your account on www.upmile.com Please click on the link below and we\'ll remove that account from the system.\r\n                        <a href=\"http://localhost:8080/authorize/70a069d0-7ab7-4024-ae87-5bca47031d22/347/1\">No, I didn\'t create account.</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:15px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Thanks,\r\n                        <br>\r\n                        Upmile.com\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>',NULL,'2012-12-27 14:35:07'),
- (153,0,'mailer@upmile.com','kir55@test.com','Upmile.com Account Email Confirmation','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n    <head>\r\n        <title >Upmile.com Account Confirmation</title>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Hello!\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:5px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        We wanted to confirm that you created account on www.upmile.com and you own this email address: <label>kir55@test.com</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you created your account on www.upmile.com and you own this email address. Please click on this link:\r\n                        <a href=\"http://localhost:8080/authorize/47abe276-4268-451a-9f02-17ef62d412b5/348/0\">Yes, I confirm. </a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you didn\'t create your account on www.upmile.com Please click on the link below and we\'ll remove that account from the system.\r\n                        <a href=\"http://localhost:8080/authorize/47abe276-4268-451a-9f02-17ef62d412b5/348/1\">No, I didn\'t create account.</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:15px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Thanks,\r\n                        <br>\r\n                        Upmile.com\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>',NULL,'2012-12-27 15:11:42'),
- (154,0,'mailer@upmile.com','kir7@test.com','Upmile.com Account Email Confirmation','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n    <head>\r\n        <title >Upmile.com Account Confirmation</title>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Hello!\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:5px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        We wanted to confirm that you created account on www.upmile.com and you own this email address: <label>kir7@test.com</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you created your account on www.upmile.com and you own this email address. Please click on this link:\r\n                        <a href=\"http://localhost:8080/authorize/00136786-736b-4320-8cc7-cc8ff512816c/349/0\">Yes, I confirm. </a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you didn\'t create your account on www.upmile.com Please click on the link below and we\'ll remove that account from the system.\r\n                        <a href=\"http://localhost:8080/authorize/00136786-736b-4320-8cc7-cc8ff512816c/349/1\">No, I didn\'t create account.</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:15px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Thanks,\r\n                        <br>\r\n                        Upmile.com\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>',NULL,'2012-12-27 15:19:13');
+ (150,1,'mailer@upmile.com','kir@test.com','Upmile.com Account Email Confirmation','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n    <head>\r\n        <title >Upmile.com Account Confirmation</title>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Hello!\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:5px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        We wanted to confirm that you created account on www.upmile.com and you own this email address: <label>kir@test.com</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you created your account on www.upmile.com and you own this email address. Please click on this link:\r\n                        <a href=\"http://localhost:8080/authorize/3b7b9c7e-b924-467e-9cb0-043cee76050b/345/0\">Yes, I confirm. </a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you didn\'t create your account on www.upmile.com Please click on the link below and we\'ll remove that account from the system.\r\n                        <a href=\"http://localhost:8080/authorize/3b7b9c7e-b924-467e-9cb0-043cee76050b/345/1\">No, I didn\'t create account.</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:15px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Thanks,\r\n                        <br>\r\n                        Upmile.com\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>','2013-01-15 21:35:00','2012-12-27 14:09:28'),
+ (151,1,'mailer@upmile.com','kir2@test.com','Upmile.com Account Email Confirmation','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n    <head>\r\n        <title >Upmile.com Account Confirmation</title>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Hello!\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:5px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        We wanted to confirm that you created account on www.upmile.com and you own this email address: <label>kir2@test.com</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you created your account on www.upmile.com and you own this email address. Please click on this link:\r\n                        <a href=\"http://localhost:8080/authorize/1b21a1e6-6930-49e7-8b18-34f50d28ff27/346/0\">Yes, I confirm. </a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you didn\'t create your account on www.upmile.com Please click on the link below and we\'ll remove that account from the system.\r\n                        <a href=\"http://localhost:8080/authorize/1b21a1e6-6930-49e7-8b18-34f50d28ff27/346/1\">No, I didn\'t create account.</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:15px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Thanks,\r\n                        <br>\r\n                        Upmile.com\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>','2013-01-15 21:35:00','2012-12-27 14:16:56'),
+ (152,1,'mailer@upmile.com','kir3@test.com','Upmile.com Account Email Confirmation','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n    <head>\r\n        <title >Upmile.com Account Confirmation</title>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Hello!\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:5px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        We wanted to confirm that you created account on www.upmile.com and you own this email address: <label>kir3@test.com</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you created your account on www.upmile.com and you own this email address. Please click on this link:\r\n                        <a href=\"http://localhost:8080/authorize/70a069d0-7ab7-4024-ae87-5bca47031d22/347/0\">Yes, I confirm. </a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you didn\'t create your account on www.upmile.com Please click on the link below and we\'ll remove that account from the system.\r\n                        <a href=\"http://localhost:8080/authorize/70a069d0-7ab7-4024-ae87-5bca47031d22/347/1\">No, I didn\'t create account.</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:15px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Thanks,\r\n                        <br>\r\n                        Upmile.com\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>','2013-01-15 21:35:00','2012-12-27 14:35:07'),
+ (153,1,'mailer@upmile.com','kir55@test.com','Upmile.com Account Email Confirmation','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n    <head>\r\n        <title >Upmile.com Account Confirmation</title>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Hello!\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:5px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        We wanted to confirm that you created account on www.upmile.com and you own this email address: <label>kir55@test.com</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you created your account on www.upmile.com and you own this email address. Please click on this link:\r\n                        <a href=\"http://localhost:8080/authorize/47abe276-4268-451a-9f02-17ef62d412b5/348/0\">Yes, I confirm. </a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you didn\'t create your account on www.upmile.com Please click on the link below and we\'ll remove that account from the system.\r\n                        <a href=\"http://localhost:8080/authorize/47abe276-4268-451a-9f02-17ef62d412b5/348/1\">No, I didn\'t create account.</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:15px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Thanks,\r\n                        <br>\r\n                        Upmile.com\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>','2013-01-15 21:35:00','2012-12-27 15:11:42'),
+ (154,1,'mailer@upmile.com','kir7@test.com','Upmile.com Account Email Confirmation','<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\r\n<html>\r\n    <head>\r\n        <title >Upmile.com Account Confirmation</title>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"http://localhost:8080/static/css/email.css\"/>\r\n    </head>\r\n    <body>\r\n        <div class=\"emailtext\">\r\n            <div class=\"table\">\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Hello!\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:5px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        We wanted to confirm that you created account on www.upmile.com and you own this email address: <label>kir7@test.com</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you created your account on www.upmile.com and you own this email address. Please click on this link:\r\n                        <a href=\"http://localhost:8080/authorize/00136786-736b-4320-8cc7-cc8ff512816c/349/0\">Yes, I confirm. </a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:10px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        If you didn\'t create your account on www.upmile.com Please click on the link below and we\'ll remove that account from the system.\r\n                        <a href=\"http://localhost:8080/authorize/00136786-736b-4320-8cc7-cc8ff512816c/349/1\">No, I didn\'t create account.</a>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\" style=\"height:15px;line-height:1px;\">\r\n                    &nbsp;\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"cell leftAlign\">\r\n                        Thanks,\r\n                        <br>\r\n                        Upmile.com\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>','2013-01-15 21:35:00','2012-12-27 15:19:13');
 /*!40000 ALTER TABLE `data_email` ENABLE KEYS */;
 
 
@@ -1085,6 +1125,7 @@ INSERT INTO `meta_html_templates` (`id`,`template`,`ops`,`dt`) VALUES
  (14,'mybizaccount.vm','1,5','2012-09-12 21:58:24'),
  (15,'offer.vm','1,9','2012-09-12 21:58:24'),
  (16,'offer_html.vm',NULL,'2012-08-20 21:11:02'),
+ (17,'newdeal.vm',NULL,'2013-01-19 22:16:59'),
  (18,'updatemybiz.vm','1,5','2012-09-12 21:58:24');
 /*!40000 ALTER TABLE `meta_html_templates` ENABLE KEYS */;
 
@@ -1280,6 +1321,27 @@ INSERT INTO `meta_nodes` (`id`,`parent_object_id`,`node_name`,`node_type`,`type_
  (15,10,'subcategory_id',0,1,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2012-12-30 21:56:59'),
  (18,2,'version',0,6,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2007-09-12 13:00:00'),
  (19,2,'id',3,1,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2007-10-06 09:00:00'),
+ (20,1,'id',0,1,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:12'),
+ (21,1,'user_id',0,1,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:13'),
+ (22,1,'biz_id',0,1,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:13'),
+ (23,1,'status',0,6,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:13'),
+ (24,1,'type',0,6,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:13'),
+ (25,1,'name',0,14,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:13'),
+ (26,1,'description',0,7,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:13'),
+ (27,1,'expiration',0,18,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:13'),
+ (28,1,'latitude',0,19,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:13'),
+ (29,1,'longitude',0,19,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:13'),
+ (30,1,'dt',0,12,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 12:32:13'),
+ (31,1,'category_id',0,1,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 15:28:50'),
+ (32,1,'subcategory_id',0,1,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 15:28:50'),
+ (33,1,'address_name',0,14,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 15:28:50'),
+ (34,1,'street',0,14,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 15:28:50'),
+ (35,1,'city',0,14,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 15:28:50'),
+ (36,1,'state',0,2,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 15:28:50'),
+ (37,1,'zipcode',0,3,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-16 15:28:50'),
+ (38,11,'longitude',0,19,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-20 22:58:48'),
+ (39,11,'latitude',0,19,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-20 22:58:48'),
+ (40,1,'regular_price',0,19,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-24 17:25:01'),
  (41,10,'category_id',0,1,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2010-10-02 15:57:10'),
  (42,10,'id',3,1,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2007-10-27 10:00:00'),
  (43,10,'name',0,7,0,0,0,'TEXTBOX',NULL,NULL,NULL,NULL,NULL,'2007-10-27 10:00:00'),
@@ -1291,6 +1353,7 @@ INSERT INTO `meta_nodes` (`id`,`parent_object_id`,`node_name`,`node_type`,`type_
  (49,10,'web',0,14,1,0,0,'TEXTBOX',NULL,NULL,NULL,NULL,NULL,'2007-10-27 10:00:00'),
  (50,10,'web_name',0,14,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2010-10-02 15:57:11'),
  (51,10,'status',0,6,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2007-11-17 13:00:00'),
+ (52,1,'deal_price',0,19,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-01-24 17:25:01'),
  (79,10,'locations',2,NULL,1,1,0,NULL,NULL,NULL,11,NULL,NULL,'2010-01-01 18:14:38'),
  (80,11,'id',3,1,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2010-01-01 18:37:55'),
  (81,11,'biz_id',4,1,0,0,0,NULL,NULL,NULL,10,NULL,'id','2010-01-01 18:37:55'),
@@ -1301,6 +1364,8 @@ INSERT INTO `meta_nodes` (`id`,`parent_object_id`,`node_name`,`node_type`,`type_
  (86,11,'zipcode',0,3,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2010-01-01 18:37:55'),
  (87,11,'phone',0,4,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2010-01-01 18:37:55'),
  (88,11,'fax',0,5,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2010-01-01 18:44:13'),
+ (89,1,'pics',0,23,1,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-03-11 16:38:53'),
+ (90,1,'phone',0,21,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2013-03-11 16:38:53'),
  (101,2,'city',0,5,1,0,0,'',NULL,NULL,NULL,NULL,NULL,'2008-09-15 19:00:00'),
  (102,2,'state',0,2,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2008-09-15 19:00:00'),
  (103,2,'zipcode',0,3,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,'2008-09-15 19:00:00'),
@@ -1408,6 +1473,7 @@ CREATE TABLE `meta_objects` (
 
 /*!40000 ALTER TABLE `meta_objects` DISABLE KEYS */;
 INSERT INTO `meta_objects` (`id`,`name`,`data_table_name`,`custom_nodes`,`dt`) VALUES 
+ (1,'deal','data_deal',0,'2013-01-16 11:47:16'),
  (2,'user','data_user',0,'2007-05-28 18:00:00'),
  (3,'biz_category','data_biz_category',0,'2012-12-30 21:31:34'),
  (4,'biz_subcategory','data_biz_subcategory',0,'2012-12-30 21:31:34'),
@@ -1443,7 +1509,7 @@ CREATE TABLE `meta_operation_params` (
   `required` int(11) NOT NULL DEFAULT '0',
   `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=506 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=533 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `meta_operation_params`
@@ -1654,7 +1720,7 @@ INSERT INTO `meta_operation_params` (`id`,`operation_id`,`parent_oper_param_id`,
  (209,NULL,202,0,85,0,NULL,NULL,0,'2012-05-23 20:55:04'),
  (210,NULL,202,0,86,0,NULL,NULL,0,'2012-05-23 20:55:04'),
  (211,NULL,202,0,87,0,NULL,NULL,0,'2012-05-23 20:55:04'),
- (212,23,NULL,1,136,1,'user/id','=',0,'2012-05-23 22:20:53'),
+ (212,23,NULL,1,136,0,NULL,'=',0,'2013-01-19 21:46:11'),
  (213,NULL,16,0,195,0,NULL,NULL,0,'2012-05-24 14:38:38'),
  (214,24,NULL,0,137,0,NULL,NULL,0,'2012-05-31 17:44:49'),
  (215,24,NULL,0,138,0,NULL,NULL,0,'2012-05-31 17:44:49'),
@@ -1934,7 +2000,33 @@ INSERT INTO `meta_operation_params` (`id`,`operation_id`,`parent_oper_param_id`,
  (502,4,NULL,0,7,0,NULL,NULL,0,'2012-12-31 19:46:26'),
  (503,19,NULL,0,15,0,NULL,NULL,0,'2013-01-02 22:54:23'),
  (504,19,NULL,0,41,0,NULL,NULL,0,'2013-01-02 22:54:23'),
- (505,20,NULL,1,193,0,NULL,'=',0,'2013-01-03 17:16:10');
+ (505,20,NULL,1,193,0,NULL,'=',0,'2013-01-03 17:16:10'),
+ (507,62,NULL,0,21,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (508,62,NULL,0,22,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (509,62,NULL,0,23,3,'0',NULL,0,'2013-01-17 23:20:17'),
+ (510,62,NULL,0,24,3,'0',NULL,0,'2013-01-17 23:20:17'),
+ (511,62,NULL,0,25,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (512,62,NULL,0,26,0,NULL,NULL,1,'2013-01-17 23:20:17'),
+ (513,62,NULL,0,27,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (514,62,NULL,0,28,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (515,62,NULL,0,29,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (516,62,NULL,0,31,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (517,62,NULL,0,32,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (518,62,NULL,0,33,0,NULL,NULL,1,'2013-01-17 23:20:17'),
+ (519,62,NULL,0,34,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (520,62,NULL,0,35,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (521,62,NULL,0,36,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (522,62,NULL,0,37,0,NULL,NULL,0,'2013-01-17 23:20:17'),
+ (523,23,NULL,0,15,0,NULL,NULL,0,'2013-01-19 21:43:18'),
+ (524,23,NULL,0,41,0,NULL,NULL,0,'2013-01-19 21:43:18'),
+ (525,NULL,183,0,38,0,NULL,NULL,0,'2013-01-20 23:05:30'),
+ (526,NULL,183,0,39,0,NULL,NULL,0,'2013-01-20 23:05:30'),
+ (527,NULL,202,0,38,0,NULL,NULL,0,'2013-01-21 12:33:21'),
+ (528,NULL,202,0,39,0,NULL,NULL,0,'2013-01-21 12:33:22'),
+ (529,62,NULL,0,40,0,NULL,NULL,0,'2013-01-24 17:26:54'),
+ (530,62,NULL,0,52,0,NULL,NULL,0,'2013-01-24 17:26:54'),
+ (531,62,NULL,0,89,0,NULL,NULL,1,'2013-03-11 16:45:22'),
+ (532,62,NULL,0,90,0,NULL,NULL,0,'2013-03-11 16:45:22');
 /*!40000 ALTER TABLE `meta_operation_params` ENABLE KEYS */;
 
 
@@ -1953,7 +2045,7 @@ CREATE TABLE `meta_operations` (
   `comments` varchar(250) DEFAULT NULL,
   `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `meta_operations`
@@ -1983,7 +2075,7 @@ INSERT INTO `meta_operations` (`id`,`type`,`object_id`,`sp_id`,`pre_ops`,`post_o
  (20,1,2,NULL,NULL,NULL,'update user biz_owner','2012-05-09 22:48:39'),
  (21,3,NULL,12,NULL,'13,26','update order','2012-11-25 12:17:36'),
  (22,3,NULL,12,'24','13','cancel order','2012-11-24 12:32:37'),
- (23,4,10,NULL,NULL,NULL,'get biz details by owner id','2012-05-23 20:42:31'),
+ (23,4,10,NULL,'28',NULL,'get biz details by owner id','2013-01-19 22:20:14'),
  (24,4,23,NULL,NULL,NULL,'get offer by id and user id','2012-05-31 17:41:17'),
  (25,1,23,NULL,'18','19,14','update offer','2012-08-31 16:21:38'),
  (26,1,24,NULL,NULL,NULL,'update offer item','2012-06-02 22:29:17'),
@@ -2021,7 +2113,8 @@ INSERT INTO `meta_operations` (`id`,`type`,`object_id`,`sp_id`,`pre_ops`,`post_o
  (58,1,23,NULL,NULL,NULL,'update biz data when biz is updated','2012-09-13 12:32:18'),
  (59,1,25,NULL,NULL,'13,22','customer confirms his order','2012-10-28 16:00:10'),
  (60,4,25,NULL,NULL,NULL,'get offer\'s active, closed orders','2012-11-21 21:58:19'),
- (61,4,25,NULL,NULL,NULL,'get order by id','2012-11-24 23:13:18');
+ (61,4,25,NULL,NULL,NULL,'get order by id','2012-11-24 23:13:18'),
+ (62,0,1,NULL,NULL,NULL,'insert new deal','2013-01-17 23:09:26');
 /*!40000 ALTER TABLE `meta_operations` ENABLE KEYS */;
 
 
@@ -2241,6 +2334,7 @@ INSERT INTO `meta_url_mappings` (`id`,`element`,`parent_element_id`,`template_id
  (20,'offer',1,15,NULL,NULL,'2012-08-01 22:12:00'),
  (21,'html',1,NULL,NULL,NULL,'2012-08-20 21:10:19'),
  (22,'offer',21,16,NULL,NULL,'2012-08-20 21:31:40'),
+ (23,'newdeal',1,17,NULL,'15','2013-01-23 22:23:05'),
  (24,'updatemybiz',1,18,'0,8',NULL,'2012-09-12 21:54:36'),
  (25,'bizupdated',1,14,'14',NULL,'2012-09-12 22:47:53');
 /*!40000 ALTER TABLE `meta_url_mappings` ENABLE KEYS */;
