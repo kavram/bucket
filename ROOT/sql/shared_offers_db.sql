@@ -2502,6 +2502,33 @@ END $$
 DELIMITER ;
 
 --
+-- Definition of procedure `GET_DEALS_BY_LOCATION`
+--
+
+DROP PROCEDURE IF EXISTS `GET_DEALS_BY_LOCATION`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ $$
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `GET_DEALS_BY_LOCATION`(in lat real, in lon real, in dist int)
+BEGIN
+
+  declare zip_lat, zip_lon real;
+
+  if dist > 0 then
+      select d.*, GET_DISTANCE(lat, lon, latitude, longitude) as dtn from data_deal d where
+      d.status = 1 and d.expiration >= CURDATE() having dtn <= dist order by d.expiration desc;
+  else
+      select d.* from data_deal d where d.status = 1 and d.expiration >= CURDATE() order by d.expiration desc;
+
+  end if;
+
+END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
 -- Definition of procedure `GET_METADATA`
 --
 
