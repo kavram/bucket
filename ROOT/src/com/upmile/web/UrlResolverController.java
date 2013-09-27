@@ -68,17 +68,15 @@ public class UrlResolverController extends AbstractController {
 	
 	
 	private ModelAndView process(HttpServletRequest request, HttpServletResponse res) throws Exception {
-        ConnectionFactory cf = ConnectionFactory.getInstance();
         ModelAndView mav = null;
         try {
-            cf.createConnection();
             if(request.getMethod().equals("GET"))
             	mav = processRequest(request, res);
             else
             	mav = processPost(request, res);
-            cf.commitAndReleaseConn();
+            ConnectionFactory.getInstance().commitAndReleaseConn();
         } catch (Exception ex) {
-            cf.rollbackAndReleaseConn();
+        	ConnectionFactory.getInstance().rollbackAndReleaseConn();
         	log.error("Exception: " + ex.getMessage(), ex);
         }
         return mav;

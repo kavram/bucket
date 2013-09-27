@@ -1,10 +1,7 @@
 package com.upmile.web;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,21 +27,19 @@ public class ContentController extends AbstractController {
 
     private ModelAndView doRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
     	ModelAndView mav = null;
-    	ConnectionFactory cf = ConnectionFactory.getInstance();
     	boolean status = false;
-    	cf.createConnection();
         while(!status){
             try {
             	mav = processPayload(req, res);
-            	cf.commitAndReleaseConn();
+            	ConnectionFactory.getInstance().commitAndReleaseConn();
             	status = true;
             } catch (MySQLTransactionRollbackException ex) {
-                cf.rollback();
+            	ConnectionFactory.getInstance().rollback();
                 Thread.sleep(50);
             	log.error("Exception: " + ex.getMessage(), ex);
             }catch (Exception ex) {
             	status = true;
-                cf.rollbackAndReleaseConn();
+            	ConnectionFactory.getInstance().rollbackAndReleaseConn();
             	log.error("Exception: " + ex.getMessage(), ex);
             }
         }

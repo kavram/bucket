@@ -13,10 +13,8 @@ public class CloseExpiredOffers {
 
 	public void close()  {
 		try {
-			ConnectionFactory cf = ConnectionFactory.getInstance();
-			cf.createConnection();
 			closeOffers();
-			cf.commitAndReleaseConn();
+			ConnectionFactory.getInstance().commitAndReleaseConn();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}

@@ -13,7 +13,7 @@ public class TestDataManager extends TestCase {
 		//ConnectionFactory.init();
 		ConnectionFactory cf = ConnectionFactory.getInstance();
 		try {
-			cf.createConnection();
+			//cf.createConnection();
 			OperationHelper oh = new OperationHelper(8, null, null);
 			oh.addField("first_name", "john");
 			oh.addField("last_name", "doe");
@@ -34,7 +34,7 @@ public class TestDataManager extends TestCase {
 //			VelocityUtils.init();
 			//ConnectionFactory.init();
 			ConnectionFactory cf = ConnectionFactory.getInstance();
-			cf.createConnection();
+			//cf.createConnection();
 //			CloseActiveOffers af = new CloseActiveOffers();
 	//		af.execute(null);
 			cf.commitAndReleaseConn();
@@ -47,7 +47,7 @@ public class TestDataManager extends TestCase {
     	EmailUtils eu = new EmailUtils();
     	ConnectionFactory cf = ConnectionFactory.getInstance();
     	try {
-            cf.createConnection();
+            //cf.createConnection();
 			eu.processPendingEmails();
 			cf.commitAndReleaseConn();
 		} catch (Exception e) {

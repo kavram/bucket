@@ -20,13 +20,11 @@ public class SendEmail  {
 	private String smtphost = null;
 
 	public void send()  {
-    	ConnectionFactory cf = ConnectionFactory.getInstance();
     	try {
-            cf.createConnection();
             processPendingEmails();
-			cf.commitAndReleaseConn();
+            ConnectionFactory.getInstance().commitAndReleaseConn();
 		} catch (Exception e) {
-			cf.rollbackAndReleaseConn();
+			ConnectionFactory.getInstance().rollbackAndReleaseConn();
 			log.error("Exception: " + e.getMessage(), e);
 		}
 	}
