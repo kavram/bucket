@@ -25,6 +25,7 @@ public class MetaDataManager {
 	private static UrlElementMeta rootUrlElement;
 	private static Map<Integer, OperationMeta> opers;
 	
+	
 
 	public static JSONObject getObjectMeta(String objName, JSONArray nodes, int ownerId) throws Exception{
 		return  getObjectMeta(objName).getNodesMeta(nodes, ownerId);
@@ -79,7 +80,9 @@ public class MetaDataManager {
 			return null;
 	}
 	
-	public MetaDataManager(){}
+	public MetaDataManager(){
+		init();
+	}
 
 	public void init() {
 		objectsByName = new HashMap<String, ObjectMeta>();

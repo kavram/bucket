@@ -1,8 +1,9 @@
 package com.upmile.junit;
 
+import com.upmile.meta.MetaDataManager;
 import com.upmile.operation.OperationHelper;
 import com.upmile.persistence.ConnectionFactory;
-import com.upmile.util.EmailUtils;
+import com.upmile.util.EmailUtils; 
 
 import junit.framework.TestCase;
 
@@ -20,6 +21,24 @@ public class TestDataManager extends TestCase {
 			oh.addField("email", "test@mil.com");
 			oh.addField("password", "pass");
 			oh.addField("zipcode", "94122");
+			oh.execOperation();
+			cf.commitAndReleaseConn();
+		} catch (Exception e) {
+			cf.rollbackAndReleaseConn();
+			e.printStackTrace();
+		}
+	}
+	
+
+	public void testGetDealsByLoc() throws Exception {
+		ConnectionFactory cf = ConnectionFactory.getInstance();
+		MetaDataManager mdm = new MetaDataManager();
+		try {
+			//cf.createConnection();
+			OperationHelper oh = new OperationHelper(63, null, null);
+			oh.addParameter("lat", 76.345);
+			oh.addParameter("lon", 23.3456);
+			oh.addParameter("dist", 10);
 			oh.execOperation();
 			cf.commitAndReleaseConn();
 		} catch (Exception e) {

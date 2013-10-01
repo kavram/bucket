@@ -2045,7 +2045,7 @@ CREATE TABLE `meta_operations` (
   `comments` varchar(250) DEFAULT NULL,
   `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `meta_operations`
@@ -2114,7 +2114,8 @@ INSERT INTO `meta_operations` (`id`,`type`,`object_id`,`sp_id`,`pre_ops`,`post_o
  (59,1,25,NULL,NULL,'13,22','customer confirms his order','2012-10-28 16:00:10'),
  (60,4,25,NULL,NULL,NULL,'get offer\'s active, closed orders','2012-11-21 21:58:19'),
  (61,4,25,NULL,NULL,NULL,'get order by id','2012-11-24 23:13:18'),
- (62,0,1,NULL,NULL,NULL,'insert new deal','2013-01-17 23:09:26');
+ (62,0,1,NULL,NULL,NULL,'insert new deal','2013-01-17 23:09:26'),
+ (63,3,1,1,NULL,NULL,'get deals by location','2013-09-30 15:22:44');
 /*!40000 ALTER TABLE `meta_operations` ENABLE KEYS */;
 
 
@@ -2258,6 +2259,9 @@ INSERT INTO `meta_sp_parameters` (`id`,`sp_id`,`parameter_name`,`parameter_type`
  (46,14,'oid','bigint',NULL,-5,'2012-07-06 21:49:42'),
  (47,12,'ordr','varchar',NULL,12,'2012-09-23 21:55:12'),
  (48,12,'ordrid','bigint',NULL,-5,'2012-10-13 21:46:37'),
+ (49,1,'lat','float',NULL,7,'2013-09-30 15:21:51'),
+ (50,1,'lon','float',NULL,7,'2013-09-30 15:21:51'),
+ (51,1,'dist','bigint',NULL,-5,'2013-09-30 15:21:51'),
  (100,31,'user_id','bigint',NULL,-5,'2007-12-21 12:00:00'),
  (101,31,'sd','date','MM/dd/yy',91,'2007-12-21 12:00:00'),
  (102,31,'ed','date','MM/dd/yy',91,'2007-12-21 12:00:00'),
@@ -2284,6 +2288,7 @@ CREATE TABLE `meta_stored_procedures` (
 
 /*!40000 ALTER TABLE `meta_stored_procedures` DISABLE KEYS */;
 INSERT INTO `meta_stored_procedures` (`id`,`sp_name`,`result_object_id`,`dt`) VALUES 
+ (1,'GET_DEALS_BY_LOCATION',1,'2013-09-30 15:15:42'),
  (4,'TAKE_AT',3,'2007-12-22 17:00:00'),
  (12,'OFFER_ORDER',29,'2012-02-11 14:51:05'),
  (13,'GET_OFFERS',23,'2012-04-27 17:35:54'),
