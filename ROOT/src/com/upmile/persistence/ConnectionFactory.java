@@ -37,26 +37,27 @@ public class ConnectionFactory {
 		connections = new ConcurrentHashMap<Long, Connection>();
 	}
 
-	private Connection createConnection() throws SQLException{
-		Long threadId = new Long(Thread.currentThread().getId());
+	private Connection createConnection(Long threadId) throws SQLException{
+		log.debug("creating new connection for thread id: " + threadId);
 		Connection cw = null;
-		if(!connections.containsKey(threadId)){
+//		if(!connections.containsKey(threadId)){
 			cw = dataSource.getConnection();
 			cw.setAutoCommit(false);
 			connections.put(threadId, cw);
-		}
+//		}
 		return cw;
 	}
 
 	public static Connection getConnection() throws SQLException{
 		Long threadId = new Long(Thread.currentThread().getId());
+		log.debug("getting connection for thread id: " + threadId);
 		Connection cn = null;
 		if(connections.containsKey(threadId))
 			cn = (Connection)connections.get(threadId);
 		else{
-			cn = _instance.createConnection();
+			cn = _instance.createConnection(threadId);
 		}
-		log.debug("get connection id: " + cn.hashCode() + " thread id: " + threadId);
+		log.debug("got connection id: " + cn.hashCode() + " thread id: " + threadId);
 		return cn;
 	}
 	
@@ -67,7 +68,8 @@ public class ConnectionFactory {
 			if(cn != null){
 				log.debug("commit on connection id: " + cn.hashCode() +	" thread id: " + threadId);
 				cn.commit();
-				connections.remove(threadId);
+				//cn.close();
+				//connections.remove(threadId);
 			}
 			//cn.close();
 		}catch(Exception e){

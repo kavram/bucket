@@ -283,36 +283,31 @@ public class UrlResolverController extends AbstractController {
 			JSONArray locs = new JSONArray();
 			JSONObject jObj = new JSONObject();
 			JSONObject flds = new JSONObject();
-			if(request.getContentType() != null && request.getContentType().equals("multipart/form-data")){
+			//if(request.getContentType() != null && request.getContentType().equals("multipart/form-data")){
 				List<FileItem> list = upload.parseRequest(request);
 				for(FileItem fi : list){
+					log.debug("field: " + fi.getFieldName() + " ,value: " + fi.getString());
 					if(!fi.isFormField()){
 						oh.addField("logo", saveFile(fi));
 					}else{
-						if(fi.getFieldName().equals("name") || fi.getFieldName().equals("description") ||
-    						fi.getFieldName().equals("phone") || fi.getFieldName().equals("email"))
-							oh.addField(fi.getFieldName(), fi.getString());
-						else
+						if(fi.getFieldName().equals("name") || fi.getFieldName().equals("category_id") || 
+								fi.getFieldName().equals("subcategory_id") || fi.getFieldName().equals("owner_id") || 
+								fi.getFieldName().equals("uuid") || fi.getFieldName().equals("email") || 
+								fi.getFieldName().equals("phone"))
+							flds.accumulate(fi.getFieldName(), fi.getString());
+						else{
 							jObj.accumulate(fi.getFieldName(), fi.getString());
+							if(fi.getFieldName().equals("zipcode")){
+								//get longitude, latitude
+								OperationHelper zipOper = new OperationHelper(28, request, res);
+								zipOper.addParameter("zipcode", fi.getString());
+								IObject obj = zipOper.execOperation().getObject();
+								jObj.accumulate("longitude", obj.getINode("longitude").getValue());
+								jObj.accumulate("latitude", obj.getINode("latitude").getValue());
+							}
+						}
 					}
 				}
-			}else{
-				Reader reader = request.getReader();
-				char[] buffer = new char[(int) request.getContentLength()];
-				reader.read(buffer);
-				String ret = new String(buffer);
-				String[] spl = ret.split("&");
-				for(int i = 0; i < spl.length; i++){
-					String[] sub = spl[i].split("=");
-					String name = sub[0];
-					String value = sub[1];
-					if(name.equals("name") || name.equals("category_id") || name.equals("subcategory_id") ||
-    					name.equals("owner_id") || name.equals("uuid") || name.equals("email") || name.equals("phone"))
-						flds.accumulate(name, value);
-					else
-						jObj.accumulate(name, value);
-				}
-			}
 			locs.put(jObj);
 			flds.put("locations", locs);
 			oh.addFields(flds);

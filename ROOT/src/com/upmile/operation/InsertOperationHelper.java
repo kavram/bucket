@@ -13,13 +13,9 @@ public class InsertOperationHelper extends OperationHelper {
 	private JSONArray jarFields;
 	
 	public InsertOperationHelper(int operId, HttpServletRequest req, HttpServletResponse httpResp) throws Exception {
-		this.httpReq = req;
-		this.httpResp = httpResp;
-		oper = new JSONObject();
+		super(operId, req, httpResp);
 		jarFields = new JSONArray();
-		oper.accumulate("id", String.valueOf(operId));
-		operMeta = MetaDataManager.getOperation(operId);
-		oper.accumulate("parameters", new JSONObject());
+		oper.remove("fields");
 		oper.put("fields", jarFields);
 		
 	}

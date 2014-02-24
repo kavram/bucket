@@ -226,10 +226,12 @@ public abstract class PersistenceUtil {
 		INode in = null;
 		if(javaType.equals(DataTypeMeta.JAVA_TYPE_JSON_OBJ)){
 			String strVal = rs.getString(field);
-			value = new JSONObject(strVal);
+			if(strVal != null && !strVal.isEmpty())
+				value = new JSONObject(strVal);
 		}else if(javaType.equals(DataTypeMeta.JAVA_TYPE_JSON_ARRAY)){
 			String strVal = rs.getString(field);
-			value = new JSONArray(strVal);
+			if(strVal != null && !strVal.isEmpty())
+				value = new JSONArray(strVal);
 		}else if(javaType.equals(DataTypeMeta.JAVA_TYPE_STRING))
 			value = rs.getString(field);
 		else if(javaType.equals(DataTypeMeta.JAVA_TYPE_TEXT)){
@@ -247,9 +249,11 @@ public abstract class PersistenceUtil {
 			value = rs.getTime(field);
 		else if(javaType.equals(DataTypeMeta.JAVA_TYPE_DATE_TIME))
 				value = (java.util.Date)rs.getTimestamp(field);
-		else if(javaType.equals(DataTypeMeta.PADDED_PIPE_SEPARATED_STR))
-			value = new PaddedPipeSeparatedStr(rs.getString(field));
-
+		else if(javaType.equals(DataTypeMeta.PADDED_PIPE_SEPARATED_STR)){
+			String strVal = rs.getString(field);
+			if(strVal != null && !strVal.isEmpty())
+				value = new PaddedPipeSeparatedStr(strVal);
+		}
 		if(nm.isReferenceType()){
 			in = new ReferenceNodeImpl(parent, nm, value);
 			refNodes.add((ReferenceNodeImpl)in);

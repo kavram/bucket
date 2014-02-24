@@ -52,7 +52,10 @@ public class ObjectWrapperImpl implements IObjectWrapper {
 
 	@Override
 	public IObject getObject() throws Exception {
-		return (IObject) objects.toArray()[0];
+		if(objects != null && !objects.isEmpty())
+			return (IObject) objects.toArray()[0];
+		else
+			return null;
 	}
 	
 }
